@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, {useContext, useState, useEffect } from 'react';
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import url from '../misc/url';
+import { ProfileContext} from "../profilecontext";
+import { signOut } from 'firebase/auth';
 
-export default function Navbar({user, logout, users}) {
+export default function Navbar() {
   	const [ishovered,setIshovered] = useState(false)
 	const [profile,setProfile] = useState(false)
+	const [courses, setCourses] = useState();
+  const users = useContext(ProfileContext).profile;
   function hovered(){
     setIshovered(true)
   }
@@ -15,6 +21,39 @@ export default function Navbar({user, logout, users}) {
 	setProfile(!profile);
   document.querySelector('.profile').style.display = "block";
   }
+
+ 
+  
+  function logout(){
+    console.log("hello")
+    localStorage.removeItem("token");
+    setUser(false);
+	setIshovered(false);
+	setProfile(false);
+	
+  
+signOut(auth).then(() => {
+  console.log("hello")
+}).catch((error) => {
+  // An error happened.
+});
+
+  }
+
+  
+  
+	useEffect( ()=>{
+		data();
+	   console.log(users)
+	
+	  
+	},[])
+	let data = async()=>{
+	  let result = await axios.post(`${url}course_detail`);
+	   setCourses(result.data);
+	  
+	}
+ 
   
   return (
    <>
@@ -30,97 +69,25 @@ export default function Navbar({user, logout, users}) {
 			
 			<div className='h-12 relative max-lg:hidden '>
 			{/* courses and hovered div */}
-			<div className='relative ' onMouseOver={hovered}  style={{marginTop:'10px'}}>
+			<div className='relative ' onMouseOver={hovered}   style={{marginTop:'10px'}} onClick={()=>{setIshovered(false)}}>
         		{/*hoveredDiv*/}
-		        	{(ishovered && <div className='absolute text-lg font-base text-gray-800  bg-gray-100' onMouseLeave={unhovered}  style={{top:'175%',width :'320px',borderRadius:'3px',zIndex:9999,boxShadow:'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'}} >
+		        	{(ishovered && <div  className='courses-modal absolute  text-lg font-base text-gray-800  bg-gray-100' onMouseLeave={unhovered}  style={{top:'175%',width :'320px', height: '500px',   borderRadius:'3px',zIndex:9999,boxShadow:'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px', overflowY: 'auto'}} >
                  {/*section-1 */}
-		            <div className=' group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6  hover:bg-gray-300' style={{height:'50px'}}>
+				 {courses?courses.map(Element =>(
+					<div className=' group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6  hover:bg-gray-300' style={{height:'50px'}}>
 		        	    <div>
-		        		  	<a className=' hover:no-underline group-hover:text-purple-600' href="">Development</a>
+		        		  	<a className=' hover:no-underline group-hover:text-purple-600' href="">{Element.title}</a>
 		        	  	</div>
 		        		<div >
 		        			<i className='fa-solid fa-angle-right text-black'></i>
 		        		</div>
 		        	</div>
 
-					{/*Section 2 */}
-		            	<div className=' group flex border-b border-gray-900  hover:border-none justify-between items-center pl-6 pr-6 hover:bg-gray-300' style={{height:'50px'}}>
-		        		    <div className=''>
-		        			  	<a className='hover:no-underline group-hover:text-purple-600' href="">Business</a>
-		        		  	</div>
-		        			<div>
-		        				<i className='fa-solid fa-angle-right text-black'></i>
-		        			</div>
-		        		</div>
+				 )):''}
+		           
 
-					{/*Section 3 */}
-		            	<div className='group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6 hover:bg-gray-300 ' style={{height:'50px'}}>
-		        		    <div className=''>
-		        			  	<a className='hover:no-underline group-hover:text-purple-600' href="">Finance & Accounting</a>
-		        		  	</div>
-		        			<div>
-		        				<i className='fa-solid fa-angle-right text-black'></i>
-		        			</div>
-		        		</div>
-
-					{/*Section 4 */}
-		            	<div className='group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6 hover:bg-gray-300 ' style={{height:'50px'}}>
-		        		    <div className=''>
-		        			  	<a className=' hover:no-underline group-hover:text-purple-600' href="">It & Software</a>
-		        		  	</div>
-		        			<div>
-		        				<i className='fa-solid fa-angle-right text-black'></i>
-		        			</div>
-		        		</div>
-
-					{/*Section 5 */}
-		            <div className='group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6  hover:bg-gray-300 ' style={{height:'50px'}}>
-		        	    <div >
-		        		  	<a className=' hover:no-underline group-hover:text-purple-600' href="">Design</a>
-		        	  	</div>
-		        		<div>
-		        			<i className='fa-solid fa-angle-right text-black'></i>
-		        		</div>
-		        	</div>
-
-					{/*Section 6 */}
-		            <div className=' group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6  hover:bg-gray-300 ' style={{height:'50px'}}>
-		        	    <div className=''>
-		        		  	<a className=' hover:no-underline group-hover:text-purple-600' href="">Lifestyle</a>
-		        	  	</div>
-		        		<div>
-		        			<i className='fa-solid fa-angle-right text-black'></i>
-		        		</div>
-		        	</div>
-
-					{/*Section 7 */}
-		            <div className='group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6  hover:bg-gray-300 ' style={{height:'50px'}}>
-		        	    <div >
-		        		  	<a className=' hover:no-underline group-hover:text-purple-600' href="">Music</a>
-		        	  	</div>
-		        		<div>
-		        			<i className='fa-solid fa-angle-right text-black'></i>
-		        		</div>
-		        	</div>
-
-					{/*Section 8 */}
-		            <div className='group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6  hover:bg-gray-300 ' style={{height:'50px'}}>
-		        	    <div >
-		        		  	<a className='hover:no-underline group-hover:text-purple-600'  href="">Health & Fitness</a>
-		        	  	</div>
-		        		<div>
-		        			<i className='fa-solid fa-angle-right text-black' ></i>
-		        		</div>
-		        	</div>
-					{/*Section 9 */}
-		            <div className='group flex  hover:text-purple-600 hover:border-none justify-between items-center pl-6 pr-6 hover:bg-gray-300 ' style={{height:'50px'}}>
-		        	    <div >
-		        		  	<a className='hover:no-underline group-hover:text-purple-600' href="">Office Productivity</a>
-		        	  	</div>
-		        		<div >
-		        			<i className='fa-solid fa-angle-right text-black'></i>
-		        		</div>
-		        	</div>
+				
+		         
 		    		</div>)}
 
             {/* Courses */}
@@ -172,7 +139,7 @@ export default function Navbar({user, logout, users}) {
 
         {/* Porfile Login Signup */}
         <div className='flex justify-between  items-center h-12 font-medium text-purple-600  text-lg mr-8  max-lg:hidden  '>
-          {user?
+          {users?
         <div className='flex items-center '>
           <div>
             <button className=' h-10 rounded-lg bg-purple-600 mr-8 text-white font-sans' style= {{fontSize:'17px',width:'90px'}}onClick={logout}>Log out</button>
@@ -195,7 +162,7 @@ export default function Navbar({user, logout, users}) {
 
 				{(profile && <div className='relative h-full  mt-3 profile' onMouseLeave={()=>{
           document.querySelector('.profile').style.display = "none"
-        }}>
+        }} style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'}}>
 					<div className='absolute bg-white w-48 -right-2 text-base  text-gray-600' style={{top:'110%',zIndex:'999',boxShadow: 'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'}} >
 						{/* sections 1 */}
             <div className='flex border-b border-gray-400 items-center pl-4 group' style={{height:'45px'}}>

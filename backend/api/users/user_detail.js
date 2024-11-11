@@ -13,7 +13,7 @@ const router = express.Router();
 router.post('/user_detail', async(req, res) =>{
     const {token} = req.body;
     const user = jwt.decode(token);
-    console.log(user)
+    console.log(token)
    
     const client = new MongoClient(url);
     const db = client.db("Tech_Temple");

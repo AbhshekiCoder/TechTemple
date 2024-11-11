@@ -6,7 +6,7 @@ import SignupFrame1_img from '../assets/SignupImage.png'
 import {signInWithPopup} from 'firebase/auth';
 import axios from 'axios'
 import { Message } from 'rsuite';
-import auth from '../firebase/firebase';
+import {auth} from '../firebase/firebase';
 
 import {GoogleAuthProvider} from 'firebase/auth';
 import { FacebookAuthProvider } from 'firebase/auth';

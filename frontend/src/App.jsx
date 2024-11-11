@@ -14,21 +14,36 @@ import Home from './Pages/Home'
 import { Loader } from 'rsuite';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
+import axios from 'axios';
+import PrivateRoute from './Routes/PrivateRoute';
+import PublicRoute from './Routes/PublicRoutes';
+import Dashboard from './Pages/Dashboard';
+import { ProfileProvider } from './profilecontext'
 
 
+ 
 // import Demo from './Components/demo'
 
 function App() {
- 
+  
   return (
     <>
-    
+    <ProfileProvider>
     <Routes>
-      <Route path = "/Signin" element={<Login/>}></Route>
+    <Route element = {<PrivateRoute/>}>
+    <Route path = "/Dashboard" element={<Dashboard/>}></Route>
+
+    </Route>
+     <Route element = {<PublicRoute/>}>
+     <Route path = "/Signin" element={<Login/>}></Route>
       <Route path = "/Signup" element = {<Signup/>}></Route>
-      <Route path='/' element ={<Home/>}></Route>
+      <Route path='/' element ={<Home />}></Route>
+     </Route>
     </Routes>
     <Footer/>
+      
+    </ProfileProvider>
+   
       
     
     

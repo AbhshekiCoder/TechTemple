@@ -8,11 +8,11 @@ import { Message } from 'rsuite';
 import {signInWithPopup} from 'firebase/auth';
 
 
-import auth from '../firebase/firebase';
+import {auth} from '../firebase/firebase';
 
 import {GoogleAuthProvider} from 'firebase/auth';
 import { FacebookAuthProvider } from 'firebase/auth';
-import { PhoneAuthProvider } from 'firebase/auth'
+import { GithubAuthProvider } from 'firebase/auth'
 import { Link, useNavigate } from 'react-router-dom'
 import url from '../misc/url';
 
@@ -83,9 +83,13 @@ export default function Login() {
 		
 		const provider = new GoogleAuthProvider();
 	signInWithPopup(auth, provider).then(async(res)=>{
+		let credentials = GoogleAuthProvider.credentialFromResult(res);
+		let token = credentials.accessToken;
+		console.log(token)
 let obj ={
 	name: res.user.displayName,
-	email: res.user.email
+	email: res.user.email,
+	token: token
 }
 
 let result = await axios.post(`${url}register_apps`, obj);
@@ -138,13 +142,23 @@ let result = await axios.post(`${url}register_apps`, obj);
 
 	
 	let facebook_authentication = async()=>{
-		const provider = new PhoneAuthProvider();
+		const provider = new FacebookAuthProvider();
 	    signInWithPopup(auth, provider).then(async(res)=>{
 			console.log(res)
 		
 				}).catch((err)=>{
 				 console.log(err);
 				})
+	}
+	let github_authentication = async()=>{
+		const provider = new GithubAuthProvider();
+	    signInWithPopup(auth, provider).then(async(res)=>{
+			console.log(res)
+		
+				}).catch((err)=>{
+				 console.log(err);
+				})
+
 	}
   return (
 	<> 
@@ -193,10 +207,10 @@ let result = await axios.post(`${url}register_apps`, obj);
                     <hr className='border-2 flex-grow' style={{borderColor:'#AEAEAE'}}/>
                 </div>
 
-				<div className='flex justify-between w-44 m-auto pt-8'>
+				<div className='flex justify-between w-44 m-auto pt-8 hover:cursor-pointer'>
 					<img className = 'h-8 w-8' src ={google} onClick = {google_authentication}/>
 					<img className = 'h-8 w-8 rounded-circle' src ={facebook} style={{backgroundColor:'#1877F2'}} onClick={facebook_authentication}/>
-					<img className = 'h-8 w-8' src ={apple}/>
+					<img className = 'h-8 w-8' src ={apple} onClick={github_authentication}/>
 				</div>
 
 				<div className='mt-8'>
