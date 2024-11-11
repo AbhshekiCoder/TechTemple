@@ -13,19 +13,14 @@ import 'swiper/css/effect-cube';
 import { Navigation, Pagination, Thumbs} from 'swiper/modules';
 import axios from "axios";
 import { signOut , auth} from "../firebase/firebase";
-import { ProfileContext, useProfile } from "../profilecontext";
+
 
 
 function Home(){
-  const [users, setUsers] = useState(useProfile)
- 
-  //https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600
+    //https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600
   //https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=600
   //https://cdn.pixabay.com/photo/2019/10/09/07/28/development-4536630_640.png
-  useEffect(()=>{
-    console.log(users)
-
-  },[])
+  
     return(
       
         <>
