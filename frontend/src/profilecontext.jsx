@@ -1,6 +1,7 @@
 import {createContext, useContext, useEffect, useState} from 'react';
-
-const ProfileContext = createContext();
+import axios from 'axios';
+import url from './misc/url';
+export const ProfileContext = createContext();
 export const ProfileProvider = ({children})=>{
    let [profile, setProfile] = useState(true);
    let [users, setUsers]  = useState();
@@ -9,22 +10,23 @@ export const ProfileProvider = ({children})=>{
     if(token){
         setProfile(true);
        
-        let users = async()=>{
+        let user = async()=>{
       
          
            
-              let result = await axios.post('http://localhost:3000/user_detail', {token});
+              let result = await axios.post(`${url}user_detail`, {token});
             console.log(result.data);
             let name= result.data.name.split(' ');
            
         
             setUsers(name[0]);
+            console.log(users)
         
             }
             
         
             
-            users();
+            user();
                 
           
     }
@@ -43,4 +45,6 @@ export const ProfileProvider = ({children})=>{
         </>
     )
 }
-export const useProfile =() => useContext(ProfileContext); 
+export const useProfile = ()=>{
+    return useContext(ProfileContext)
+}

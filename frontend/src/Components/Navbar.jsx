@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, {useContext, useState, useEffect } from 'react';
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import url from '../misc/url';
+import { ProfileContext} from "../profilecontext";
+import { signOut } from 'firebase/auth';
 
 export default function Navbar() {
   	const [ishovered,setIshovered] = useState(false)
 	const [profile,setProfile] = useState(false)
 	const [courses, setCourses] = useState();
+  const users = useContext(ProfileContext).profile;
   function hovered(){
     setIshovered(true)
   }
@@ -18,15 +21,9 @@ export default function Navbar() {
 	setProfile(!profile);
   document.querySelector('.profile').style.display = "block";
   }
-  let [user, setUser] = useState();
- 
-  useEffect(()=>{
-    let data = localStorage.getItem("token");
-    if(data){
-      setUser(true);
-    }
 
-  },[user])
+ 
+  
   function logout(){
     console.log("hello")
     localStorage.removeItem("token");
@@ -42,32 +39,12 @@ signOut(auth).then(() => {
 });
 
   }
-  let [users, setUsers] = useState();
+
   
-  useEffect( ()=>{
-    let users = async()=>{
-      
-    let token = localStorage.getItem('token');
-    if(token){
-      let result = await axios.post('http://localhost:3000/user_detail', {token});
-    console.log(result.data);
-    let name= result.data.name.split(' ');
-   
-
-    setUsers(name[0]);
-
-    }
-    
-
-    }
-    users();
-		
   
-
-	},[])
 	useEffect( ()=>{
 		data();
-	   
+	   console.log(users)
 	
 	  
 	},[])
@@ -162,7 +139,7 @@ signOut(auth).then(() => {
 
         {/* Porfile Login Signup */}
         <div className='flex justify-between  items-center h-12 font-medium text-purple-600  text-lg mr-8  max-lg:hidden  '>
-          {user?
+          {users?
         <div className='flex items-center '>
           <div>
             <button className=' h-10 rounded-lg bg-purple-600 mr-8 text-white font-sans' style= {{fontSize:'17px',width:'90px'}}onClick={logout}>Log out</button>
