@@ -11,29 +11,39 @@ app.use(express.json());
 const router = express.Router();
 router.post('/login', async(req, res) =>{
     const {email, password} = req.body;
-    
+   
    
     const client = new MongoClient(url);
     const db = client.db("Tech_Temple");
     const collection = db.collection("users");
     try{
+      
         let result =  await collection.findOne({email: email});
-            
+            console.log(result.password)
             if(!result){
                 res.send({success:false, message: "invalid email"})
                 return;
  
              }
-             let result1 = await bcrypt.compare(password, result.password);
-             if(result1){
-                const token = jwt.sign({ email: email }, '123456', { expiresIn: '1h' });
-           
-                res.send({success: true, message: "login successfully", token: token});
-             }
-             else{
-                res.send({success: false, message: "invalid password"})
-             }
+              try{
+                let result1 = await bcrypt.compare(password, result.password);
+                if(result1){
+               
+                    const token = jwt.sign({ email: email }, '123456', { expiresIn: '1h' });
+                    res.send({success: true, message: "login successfully", token: token});
+                }
+                else{
+                     res.send({success: false, message: "invalid password"})
+             
+               }
  
+
+              }catch(err){
+                res.send({success:false, message: "invalid email"})
+
+              }
+            
+            
 
         
            

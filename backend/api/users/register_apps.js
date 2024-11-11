@@ -11,8 +11,8 @@ app.use(express.json());
 const router = express.Router();
 
 router.post('/register_apps', async(req, res) =>{
-    const{name, email} = req.body;
- 
+    const{name, email, token} = req.body;
+   
     try{
       
         let obj = {

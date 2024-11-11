@@ -14,6 +14,7 @@ const user_password_reset = require('./api/users/Password_Reset');
 const register_apps = require('./api/users/register_apps');
 const user_detail = require('./api/users/user_detail');
 const jwt = require('jsonwebtoken');
+const courses = require('./api/teachers/courses');
 
 const url = "mongodb+srv://projects:123456ytrewq@cluster0.0qqnloi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
@@ -34,7 +35,19 @@ app.put('/user_profile_update', user_profile_update);
 app.post('/user_password_reset', user_password_reset);
 app.post('/register_apps', register_apps);
 app.post('/user_detail', user_detail);
+app.post('/courses', courses);
 
+app.post('/course_detail', (req, res)=>{
+    const client = new MongoClient(url);
+    const db = client.db("Tech_Temple");
+    const collection = db.collection("courses");
+    collection.find().toArray().then(result =>{
+        res.send(result);
+        console.log(result)
+    }
+    )
+
+})
 app.post('/token', (req, res)=>{
     let {token} = req.body;
     if (!token) return res.status(403).send('Token is required');
@@ -50,7 +63,7 @@ app.post('/token', (req, res)=>{
 app.get('/', (req, res)=>{
     res.send('<h1>hello</h1>')
 })
-app;
+
 
 app.listen(3000)
 
