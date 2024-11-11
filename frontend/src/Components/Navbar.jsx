@@ -5,12 +5,9 @@ import { Link } from 'react-router-dom';
 export default function Navbar({user, logout, users}) {
   	const [ishovered,setIshovered] = useState(false)
 	const [profile,setProfile] = useState(false)
-<<<<<<< HEAD
-=======
 	const [courses, setCourses] = useState();
     const [user, setUser] = useState(false);
 	const [username, setUserName] = useState(useContext(ProfileContext)[1])
->>>>>>> day6bcakend2
   function hovered(){
     setIshovered(true)
   }
@@ -21,8 +18,6 @@ export default function Navbar({user, logout, users}) {
 	setProfile(!profile);
   document.querySelector('.profile').style.display = "block";
   }
-<<<<<<< HEAD
-=======
 
  
   
@@ -64,7 +59,6 @@ signOut(auth).then(() => {
 	  
 	}
  
->>>>>>> day6bcakend2
   
   return (
    <>
