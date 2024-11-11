@@ -3,7 +3,7 @@ import axios from 'axios';
 import url from './misc/url';
 export const ProfileContext = createContext();
 export const ProfileProvider = ({children})=>{
-   let [profile, setProfile] = useState(false);
+   let [profile, setProfile] = useState(true);
    let [users, setUsers]  = useState();
    useEffect(()=>{
     let token= localStorage.getItem('token');
@@ -30,15 +30,15 @@ export const ProfileProvider = ({children})=>{
                 
           
     }
-    else{
-        setProfile(false)
-    }
+   
 
 
    },[profile])
    useEffect(()=>{
-    setProfile(true)
+    setProfile(false)
+
    },[])
+  
    
     return(
         <>

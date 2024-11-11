@@ -5,6 +5,12 @@ import { Link } from 'react-router-dom';
 export default function Navbar({user, logout, users}) {
   	const [ishovered,setIshovered] = useState(false)
 	const [profile,setProfile] = useState(false)
+<<<<<<< HEAD
+=======
+	const [courses, setCourses] = useState();
+    const [user, setUser] = useState(false);
+	const [username, setUserName] = useState(useContext(ProfileContext)[1])
+>>>>>>> day6bcakend2
   function hovered(){
     setIshovered(true)
   }
@@ -15,6 +21,50 @@ export default function Navbar({user, logout, users}) {
 	setProfile(!profile);
   document.querySelector('.profile').style.display = "block";
   }
+<<<<<<< HEAD
+=======
+
+ 
+  
+  function logout(){
+    console.log("hello")
+    localStorage.removeItem("token");
+  
+	setIshovered(false);
+	setProfile(false);
+	setUser(false)
+	
+  
+signOut(auth).then(() => {
+  console.log("hello")
+}).catch((error) => {
+  // An error happened.
+});
+
+  }
+
+  
+  
+	useEffect( ()=>{
+		data();
+		let token = localStorage.getItem("token");
+		if(token){
+			setUser(true);
+		}
+		else{
+			setUser(false)
+		}
+	
+	
+	  
+	},[])
+	let data = async()=>{
+	  let result = await axios.post(`${url}course_detail`);
+	   setCourses(result.data);
+	  
+	}
+ 
+>>>>>>> day6bcakend2
   
   return (
    <>
