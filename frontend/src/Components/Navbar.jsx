@@ -5,12 +5,14 @@ import axios from 'axios';
 import url from '../misc/url';
 import { ProfileContext} from "../profilecontext";
 import { signOut } from 'firebase/auth';
+import { auth } from '../firebase/firebase';
 
 export default function Navbar() {
   	const [ishovered,setIshovered] = useState(false)
 	const [profile,setProfile] = useState(false)
 	const [courses, setCourses] = useState();
-  const users = useContext(ProfileContext).profile;
+    const [user, setUser] = useState(useContext(ProfileContext)[0]);
+	const [username, setUserName] = useState(useContext(ProfileContext)[1])
   function hovered(){
     setIshovered(true)
   }
@@ -27,9 +29,10 @@ export default function Navbar() {
   function logout(){
     console.log("hello")
     localStorage.removeItem("token");
-    setUser(false);
+  
 	setIshovered(false);
 	setProfile(false);
+	setUser(false)
 	
   
 signOut(auth).then(() => {
@@ -44,7 +47,7 @@ signOut(auth).then(() => {
   
 	useEffect( ()=>{
 		data();
-	   console.log(users)
+	   console.log(username)
 	
 	  
 	},[])
@@ -139,7 +142,7 @@ signOut(auth).then(() => {
 
         {/* Porfile Login Signup */}
         <div className='flex justify-between  items-center h-12 font-medium text-purple-600  text-lg mr-8  max-lg:hidden  '>
-          {users?
+          {user?
         <div className='flex items-center '>
           <div>
             <button className=' h-10 rounded-lg bg-purple-600 mr-8 text-white font-sans' style= {{fontSize:'17px',width:'90px'}}onClick={logout}>Log out</button>
@@ -167,7 +170,7 @@ signOut(auth).then(() => {
 						{/* sections 1 */}
             <div className='flex border-b border-gray-400 items-center pl-4 group' style={{height:'45px'}}>
 		    	    	    <div >
-		    	    		    <a href = "#" className=' no-underline  hover:no-underline hover:text-black'>{users}</a>
+		    	    		    <a href = "#" className=' no-underline  hover:no-underline hover:text-black'>{username}</a>
 		    	    	  	</div>
 		    	    	</div>
 						<div className='flex border-b border-gray-400 items-center pl-4 group hover:bg-gray-300' style={{height:'45px'}}>
