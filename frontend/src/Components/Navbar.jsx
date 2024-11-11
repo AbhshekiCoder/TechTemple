@@ -11,7 +11,7 @@ export default function Navbar() {
   	const [ishovered,setIshovered] = useState(false)
 	const [profile,setProfile] = useState(false)
 	const [courses, setCourses] = useState();
-    const [user, setUser] = useState(useContext(ProfileContext)[0]);
+    const [user, setUser] = useState(false);
 	const [username, setUserName] = useState(useContext(ProfileContext)[1])
   function hovered(){
     setIshovered(true)
@@ -47,7 +47,14 @@ signOut(auth).then(() => {
   
 	useEffect( ()=>{
 		data();
-	   console.log(username)
+		let token = localStorage.getItem("token");
+		if(token){
+			setUser(true);
+		}
+		else{
+			setUser(false)
+		}
+	
 	
 	  
 	},[])
