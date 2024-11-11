@@ -1,4 +1,6 @@
-
+.group:hover{
+    font-weight: 500;
+}
 .SignupFrame1>div{
     max-width:757px;
     max-height:685px;
@@ -31,7 +33,6 @@
 .logo>img{
     max-height: 30px;
 }
-
 @media(max-width:1200px){
     .nav-items{
         display: none;
@@ -61,4 +62,34 @@
         display: none;
     }
 
+}
+
+/* MainContainer */
+.MainContainer{
+    max-width:1450px;
+}
+
+/* Course_Details */
+.Nav-Fields {
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+  
+.Nav-Fields::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and newer Edge */
+}
+
+.Nav-Fields>div{
+    padding: 6px 22px;
+    margin: 0px 10px;
+}
+
+.SelectedFeildCourses{
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+.SelectedFeildCourses::-webkit-scrollbar{
+    display: none; /* For Chrome, Safari, and newer Edge */
 }

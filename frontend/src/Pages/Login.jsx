@@ -166,7 +166,7 @@ let result = await axios.post(`${url}register_apps`, obj);
 			<div id = "SignupFrame2">
 
 				<div className='text-center font-inter mt-3'>
-				<p className='font-semibold text-3xl mt-24 mb-1 leading-normal'>Log In To Continue Your Learning Journey</p>
+				<p className='font-semibold text-3xl mt-24 mb-1  leading-normal' style={{color:'#444444'}}>Log In To Continue Your Learning Journey</p>
 				</div>
 				
 				<div>
@@ -200,15 +200,15 @@ let result = await axios.post(`${url}register_apps`, obj);
 				</div>
 
 				<div className='mt-8'>
-					<div className='w-full h-10 flex justify-center items-center text-lg' style={{backgroundColor:'#E9E9E9'}}>
+					<div className='w-full h-10 flex justify-center items-center text-gray-700 text-lg' style={{backgroundColor:'#E9E9E9'}}>
 						<p className='font-semibold mr-2'>Don't Have An Acoount?</p>
-						<Link to = "/Signup" className='text-purple-800 font-semibold'>Sign Up</Link>
+						<Link to = "/Signup" className='text-purple-600 hover:text-purple-600 font-semibold'>Sign Up</Link>
 					</div>
 
 					<hr className='w-full' style={{borderBottom:'solid 1px black'}}/>
 
-                    <div className='w-full h-10 flex justify-center items-center text-purple-800' style={{backgroundColor:'#E9E9E9'}}>
-                        <p className='font-semibold text-lg' ><u>Login with your organisation</u></p>
+                    <div className='w-full h-10 flex justify-center items-center text-purple-600' style={{backgroundColor:'#E9E9E9'}}>
+                        <p className='font-semibold text-lg cursor-pointer' ><u>Login with your organisation</u></p>
                     </div>
 				</div>
 
