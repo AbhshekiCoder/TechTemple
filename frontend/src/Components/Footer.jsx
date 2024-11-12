@@ -2,7 +2,7 @@ import logo from '../assets/logo.png';
 function Footer(){
     return(
         <>
-        <div className="footer   w-full  mt-6   min-h-72 p-6  max-sm:p-0" style={{backgroundColor: "rgba(38, 38, 38, 1)"}}>
+        <div className="footer w-full   min-h-72 p-6  max-sm:p-0" style={{backgroundColor: "rgba(38, 38, 38, 1)"}}>
         <div className='w-full flex justify-center '>
         <div className='row  w-full  p-2'>
 

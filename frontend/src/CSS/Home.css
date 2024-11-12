@@ -1,0 +1,31 @@
+/* MainContainer */
+.MainContainer{
+    max-width:1467px ;
+    /* padding: 0px 30px; */
+    margin: auto;
+}
+
+/* Course_Details */
+.Nav-Fields {
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+  
+.Nav-Fields::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and newer Edge */
+}
+
+.Nav-Fields>div{
+    padding: 6px 22px;
+    margin: 0px 10px;
+}
+
+.SelectedFeildCourses{
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+.SelectedFeildCourses::-webkit-scrollbar{
+    display: none; /* For Chrome, Safari, and newer Edge */
+}

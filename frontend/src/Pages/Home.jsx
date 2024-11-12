@@ -12,7 +12,7 @@ import 'swiper/css/effect-cube';
 import { Navigation, Pagination, Scrollbar, Thumbs} from 'swiper/modules';
 import axios from "axios";
 import Course_details from '../Pages/Home/Course_detail';
-
+import '../CSS/Home.css'
 function Home(){ 
   
   //https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600
@@ -30,9 +30,9 @@ function Home(){
          <SwiperSlide  className="carousel-item h-96" style={{height: "500px"}}><img src = "https://cdn.pixabay.com/photo/2019/10/09/07/28/development-4536630_640.png"  className="w-full h-full object-cover "/></SwiperSlide> 
          </Swiper>
           {/* Main Container */}
-         <div className='MainContainer m-auto'>
+        
          <Course_details/>
-         </div>
+         
         </>
     )
 }
