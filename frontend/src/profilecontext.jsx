@@ -1,14 +1,16 @@
 import {createContext, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import url from './misc/url';
+
 export const ProfileContext = createContext();
 export const ProfileProvider = ({children})=>{
-   let [profile, setProfile] = useState(true);
-   let [users, setUsers]  = useState();
+   
+   
+   let [users, setUsers]  = useState(true);
    useEffect(()=>{
     let token= localStorage.getItem('token');
     if(token){
-        setProfile(true);
+  
        
         let user = async()=>{
       
@@ -30,19 +32,15 @@ export const ProfileProvider = ({children})=>{
                 
           
     }
-   
+    
+ 
 
 
-   },[profile])
-   useEffect(()=>{
-    setProfile(false)
-
-   },[])
+   },[users])
   
-   
     return(
         <>
-            <ProfileContext.Provider value = {[profile, users]}>
+            <ProfileContext.Provider value = {[users]}>
             {children}
 
             </ProfileContext.Provider>

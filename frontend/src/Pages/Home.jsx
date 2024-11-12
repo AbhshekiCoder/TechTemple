@@ -13,57 +13,21 @@ import { Navigation, Pagination, Scrollbar, Thumbs} from 'swiper/modules';
 import axios from "axios";
 import Course_details from '../Pages/Home/Course_detail';
 
-function Home(){
-  let [users, setUsers] = useState();
+function Home(){ 
   
-  useEffect( ()=>{
-    let users = async()=>{
-      document.querySelector('.navbar').style.display = 'flex';
-    let token = localStorage.getItem('token');
-    if(token){
-      let result = await axios.post('http://localhost:3000/user_detail', {token});
-    console.log(result.data);
-    let name= result.data.name.split(' ');
-   
-
-    setUsers(name[0]);
-
-    }
-    
-
-    }
-    users();
-		
-  
-
-	},[])
-  let [user, setUser] = useState();
- 
-  useEffect(()=>{
-    let data = localStorage.getItem("token");
-    if(data){
-      setUser(true);
-    }
-
-  },[user])
-  function logout(){
-    console.log("hello")
-    localStorage.removeItem("token");
-    setUser(false);
-  }
   //https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600
   //https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=600
   //https://cdn.pixabay.com/photo/2019/10/09/07/28/development-4536630_640.png
   
     return(
         <>
-         <Navbar user={user} logout={logout} users = {users} />
+         <Navbar />
 
        
-         <Swiper modules={[ Autoplay, Thumbs]}  spaceBetween={30} centeredSlides={true} autoplay={{ delay: 3000,  disableOnInteraction: false,  }} pagination={{ clickable: true }}   className="w-full mb-28 h-96 z-0"> 
-         <SwiperSlide className="carousel-item h-96"><img src = "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600"  className="w-full h-96 object-cover "/></SwiperSlide> 
-         <SwiperSlide  className="carousel-item h-96"><img src = "https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=600"  className="w-full h-96 object-cover "/></SwiperSlide> 
-         <SwiperSlide  className="carousel-item h-96"><img src = "https://cdn.pixabay.com/photo/2019/10/09/07/28/development-4536630_640.png"  className="w-full h-96 object-cover "/></SwiperSlide> 
+         <Swiper modules={[ Autoplay, Thumbs]}  spaceBetween={30} centeredSlides={true} autoplay={{ delay: 3000,  disableOnInteraction: false,  }} pagination={{ clickable: true }}   className="w-full mb-3 h-fit  z-0"> 
+         <SwiperSlide className="carousel-item " style={{height: "500px"}}><img src = "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600"  className="w-full h-full object-cover "/></SwiperSlide> 
+         <SwiperSlide  className="carousel-item h-96" style={{height: "500px"}}><img src = "https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=600"  className="w-full h-full object-cover "/></SwiperSlide> 
+         <SwiperSlide  className="carousel-item h-96" style={{height: "500px"}}><img src = "https://cdn.pixabay.com/photo/2019/10/09/07/28/development-4536630_640.png"  className="w-full h-full object-cover "/></SwiperSlide> 
          </Swiper>
           {/* Main Container */}
          <div className='MainContainer m-auto'>

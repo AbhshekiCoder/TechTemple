@@ -1,13 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom';
+import { ProfileContext } from '../profilecontext';
+import axios from 'axios'
+import url from '../misc/url'
+import { auth } from '../firebase/firebase';
+import { signOut } from '../firebase/firebase';
+import Profile from './Navbar/Profile';
 
-export default function Navbar({user, logout, users}) {
-  	const [ishovered,setIshovered] = useState(false)
-	const [profile,setProfile] = useState(false)
+export default function Navbar() {
+  	const [ishovered, setIshovered] = useState(false)
+	const [profile, setProfile] = useState(false)
 	const [courses, setCourses] = useState();
     const [user, setUser] = useState(false);
-	const [username, setUserName] = useState(useContext(ProfileContext)[1])
+	const [username, setUserName] = useState(useContext(ProfileContext)[0]);
+	const [login, setLogin]  = useState(false)
   function hovered(){
     setIshovered(true)
   }
@@ -27,7 +34,7 @@ export default function Navbar({user, logout, users}) {
   
 	setIshovered(false);
 	setProfile(false);
-	setUser(false)
+	setLogin(false);
 	
   
 signOut(auth).then(() => {
@@ -45,10 +52,12 @@ signOut(auth).then(() => {
 		let token = localStorage.getItem("token");
 		if(token){
 			setUser(true);
+			setLogin(true)
 		}
 		else{
 			setUser(false)
 		}
+		console.log(username)
 	
 	
 	  
@@ -72,7 +81,7 @@ signOut(auth).then(() => {
               <img src={logo} alt = "" className='w-full object-cover'/>
             </div>
 			
-			<div className='h-12 relative max-lg:hidden '>
+			<div className='h-12 relative max-xl:hidden '>
 			{/* courses and hovered div */}
 			<div className='relative ' onMouseOver={hovered}  style={{marginTop:'10px'}}>
         		{/*hoveredDiv*/}
@@ -188,7 +197,7 @@ signOut(auth).then(() => {
 
         {/* Search Bar*/}
 		
-        <div className=' w-fit flex justify-around items-center rounded-full font-inter  max-lg:hidden' style={{backgroundColor:'#ECE6F0'}}>
+        <div className=' w-fit flex justify-around items-center rounded-full font-inter  max-xl:hidden' style={{backgroundColor:'#ECE6F0'}}>
           
           <div className=''> {/*Input box */}
             <input className = 'w-64 h-11 rounded-tl-full rounded-bl-full pl-5 pr-3 text-base placeholder-gray-500 outline-none'type="text" style={{backgroundColor:'#ECE6F0'}} placeholder='Search'/>
@@ -200,7 +209,7 @@ signOut(auth).then(() => {
         </div>
 
 		{/* Category */}
-        <div className='Category flex justify-between items-center  from-neutral-900 font-inter text-lg max-lg:hidden' style={{fontWeight:'500'}}>
+        <div className='Category flex justify-between items-center  from-neutral-900 font-inter text-lg max-xl:hidden' style={{fontWeight:'500'}}>
           <div className='mr-7'>
             {/* <p className='cursor-pointer hover:text-purple-900'>Plan & Pricing</p>*/}
 			<a className ='cursor-pointer hover:no-underline hover:text-purple-900 hover:font-medium' href="">Plan & Pricing</a>
@@ -218,18 +227,17 @@ signOut(auth).then(() => {
         </div>
 
         {/* Porfile Login Signup */}
-        <div className='flex justify-between  items-center h54-12 font-normal text-purple-600  text-lg mr-8  max-lg:hidden  '>
-          {user?
-        <div className='flex items-center '>
-          <div>
-            <button className=' h-10 rounded-lg bg-purple-600 mr-8 text-white font-sans' style= {{fontSize:'17px',width:'90px'}}onClick={logout}>Log out</button>
+        <div className='flex justify-between  items-center h54-12 font-normal text-purple-600  text-lg mr-8  max-xl:hidden  '>
+          {login? 	  <div className='flex items-center'>
+          <div className='text-purple-900'>
+			<button className=' h-10 rounded-lg bg-gray-300 hover:bg-purple-600 border-2 border-purple-700 hover:border-gray-300 font-semibold  mr-8 hover:text-white font-sans' style= {{fontSize:'17px',width:'90px'}}onClick={logout}>Log out</button>
           </div>
 
-          <div className='text-2xl  h-full flex items-center mr-3'>
-            <i className=" cursor-pointer fa-regular fa-circle-user text-3xl bg-gray-200 rounded-circle  "  onMouseOver={showProfile}></i>
+          <div className='h-full flex items-center mr-3 text-purple-600  hover:text-purple-700'>
+            <i className=" cursor-pointer fa-regular fa-circle-user bg-gray-300 hover:bg-gray-200 rounded-circle  " style={{fontSize:'39px'}}  onMouseOver={showProfile}></i>
           </div>
 
-          </div>: <div className='flex'>
+          </div>:<div className='flex'>
 			<div className='text-purple-800'>
           <Link to = "/Signin">  <button className='signin-n transition-all  ease-in-out  h-10 rounded-lg  border-2 border-purple-600 hover:border-purple-300  mr-8 hover:text-white font-sans bg-purple-300 hover:bg-purple-500 'style={{width:'90px',fontWeight:'500'}}>Log In</button> </Link>
           </div>
@@ -240,61 +248,16 @@ signOut(auth).then(() => {
 		  </div>
           </div>
           </div>
+	
           }
          
 			{/* Profile Section */}
 
-				{(profile && <div className='relative h-full  mt-3 profile' onMouseLeave={()=>{
-          document.querySelector('.profile').style.display = "none"
-        }}>
-					<div className='absolute bg-white w-48 font-inter -right-2 text-base  text-gray-600' style={{top:'110%',zIndex:'999',boxShadow: 'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'}} >
-						{/* sections 1 */}
-            			<div className='flex border-b border-gray-400 items-center pl-4 group' style={{height:'45px'}}>
-		    	    	    <div >
-		    	    		    <a href = "#" className=' no-underline  hover:no-underline hover:text-black'>{users}</a>
-		    	    	  	</div>
-		    	    	</div>
-						<div className='flex border-b border-gray-400 items-center pl-4 group hover:bg-gray-300' style={{height:'45px'}}>
-		    	    	    <div >
-		    	    		  	<a className='hover:no-underline group-hover:text-purple-600' href="">Home</a>
-		    	    	  	</div>
-		    	    	</div>
-						{/* sections 2 */}
-						<div className='group flex border-b border-gray-400 items-center pl-4 hover:text-purple-600 hover:bg-gray-300' style={{height:'45px'}}>
-		    	    	    <div>
-		    	    		  	<a className='hover:no-underline group-hover:text-purple-600' href="">My Bookmarks</a>
-		    	    	  	</div>
-		    	    	</div>
-						{/* section 3 */}
-						<div className='group flex border-b border-gray-400  items-center pl-4 hover:bg-gray-300' style={{height:'45px'}}>
-		    	    	    <div>
-		    	    		  	<a className='hover:no-underline group-hover:text-purple-600' href="">Edit Resume</a>
-		    	    	  	</div>
-		    	    	</div>
-						{/* section 4 */}
-						<div className='group flex border-b border-gray-400   items-center pl-4  hover:bg-gray-300' style={{height:'45px'}}>
-		    	    	    <div>
-		    	    		  	<a className='hover:no-underline group-hover:text-purple-600' href="">Safety Tips</a>
-		    	    	  	</div>
-		    	    	</div>
-						{/* section 5 */}
-						<div className='group flex border-b border-gray-400   items-center pl-4  hover:bg-gray-300' style={{height:'45px'}}>
-		    	    	    <div>
-		    	    		  	<a className='hover:no-underline group-hover:text-purple-600' href="">Help Center</a>
-		    	    	  	</div>
-		    	    	</div>
-						{/* section 6 */}
-						<div className='group flex items-center pl-4  hover:bg-gray-300' style={{height:'45px'}}>
-		    	    	    <div>
-		    	    		  	<a className='hover:no-underline group-hover:text-purple-600' href="">More</a>
-		    	    	  	</div>
-		    	    	</div>
-
-					</div>
-				</div>)}
+				{(profile && <Profile/>
+				)}
 			{/* ------------------ */}
         </div>
-		<div className='hidden items-center max-lg:flex mr-6 text-2xl'>
+		<div className='hidden items-center max-xl:flex mr-6 text-2xl'>
 		<i class="fa-solid fa-bars"></i>
 
 		</div>

@@ -21,6 +21,7 @@ import Dashboard from './Pages/Dashboard';
 import { ProfileProvider } from './profilecontext'
 
 
+
  
 // import Demo from './Components/demo'
 
@@ -28,8 +29,8 @@ function App() {
   
   return (
     <>
-    <ProfileProvider>
-    <Routes>
+  <ProfileProvider>
+  <Routes>
     <Route element = {<PrivateRoute/>}>
     <Route path = "/Dashboard" element={<Dashboard/>}></Route>
 
@@ -41,8 +42,11 @@ function App() {
      </Route>
     </Routes>
     <Footer/>
+
+  </ProfileProvider>
+   
       
-    </ProfileProvider>
+
    
       
     
