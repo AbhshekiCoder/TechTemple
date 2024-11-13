@@ -170,58 +170,58 @@ let result = await axios.post(`${url}register_apps`, obj);
    </div>
 	
     <div className='Signup flex w-full h-screen overflow-hidden'>
-      	<div className='SignupFrame1 w-1/2 pl-4 flex justify-end items-center ' >
-			<div >
-				<img src={SignupFrame1_img} alt="" />
-			</div>
-      	</div>
-	
-      	<div className='w-1/2 pl-4 pr-4 SignupFrame2 ' >
+      
+      	<div className='m-auto pl-4 pr-4 SignupFrame2 ' style={{maxWidth: "600px"}} >
 			<div id = "SignupFrame2">
 
 				<div className='text-center font-inter mt-3'>
-				<p className='font-semibold text-3xl mt-24 mb-1 leading-normal'>Log In To Continue Your Learning Journey</p>
+				<p className='font-semibold text-4xl mt-8 mb-1 leading-normal'>Log In To Continue Your Learning Journey</p>
 				</div>
 				
 				<div>
 				<form action="" name = "Signinform" onSubmit={signin}>
 
-					<div>
-					<input type="email" className='w-full h-10 border-black border-1 rounded-md pl-3 pr-3 mt-8' placeholder='Email' name="email" required />
+					<div className='w-8/12 m-auto'>
+					<input type="email" className='w-full h-10 border rounded-md pl-3 pr-3 mt-8' placeholder='Email' name="email" required />
 					</div>
 
-					<div>
-					<input type="password" className='w-full h-10 border-black border-1 rounded-md pl-3 pr-3 mt-8' placeholder='Password' name="password" required/>
+					<div className='w-8/12 m-auto'>
+					<input type="password" className='w-full h-10 border rounded-md pl-3 pr-3 mt-8' placeholder='Password' name="password" required/>
 					</div>
 
-					<div>
+					<div className='w-8/12 m-auto'>
 						<button className='w-full text-white h-10 mt-8 font-semibold text-xl ' style={{backgroundColor:'#920DE3'}}>Submit</button>
 					</div>
+					<div className='w-8/12 m-auto'>
 
 					
-				</form>
-
-                <div className='flex justify-evenly items-center mt-11 '>
+					<div className='flex justify-evenly w-full items-center mt-11'>
                     <hr className='border-2 flex-grow' style={{borderColor:'#AEAEAE'}}/>
                     <p className='ml-2 mr-2 font-semibold' style={{color:'#AEAEAE'}}>Other Log In Options</p>
                     <hr className='border-2 flex-grow' style={{borderColor:'#AEAEAE'}}/>
                 </div>
 
-				<div className='flex justify-between w-44 m-auto pt-8 hover:cursor-pointer'>
-					<img className = 'h-8 w-8' src ={google} onClick = {google_authentication}/>
+				<div className='flex justify-between w-8/12 m-auto pt-8 hover:cursor-pointer'>
+					<img className = 'h-9 w-8' src ={google} onClick = {google_authentication}/>
 					<img className = 'h-8 w-8 rounded-circle' src ={facebook} style={{backgroundColor:'#1877F2'}} onClick={facebook_authentication}/>
 					<img className = 'h-8 w-8' src ={apple} onClick={github_authentication}/>
 				</div>
+				</div>
 
+
+					
+				</form>
+
+               
 				<div className='mt-8'>
-					<div className='w-full h-10 flex justify-center items-center text-lg' style={{backgroundColor:'#E9E9E9'}}>
+					<div className='w-full h-10 flex justify-center items-center text-lg' >
 						<p className='font-semibold mr-2'>Don't Have An Acoount?</p>
 						<Link to = "/Signup" className='text-purple-800 font-semibold'>Sign Up</Link>
 					</div>
 
-					<hr className='w-full' style={{borderBottom:'solid 1px black'}}/>
+					
 
-                    <div className='w-full h-10 flex justify-center items-center text-purple-800' style={{backgroundColor:'#E9E9E9'}}>
+                    <div className='w-full h-10 flex justify-center items-center text-purple-800' >
                         <p className='font-semibold text-lg' ><u>Login with your organisation</u></p>
                     </div>
 				</div>

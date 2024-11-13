@@ -14,7 +14,10 @@ export default function Navbar() {
 	const [courses, setCourses] = useState();
     const [user, setUser] = useState(false);
 	const [username, setUserName] = useState(useContext(ProfileContext)[0]);
-	const [login, setLogin]  = useState(false)
+	const [login, setLogin]  = useState(false);
+	const [type, setType] = useState();
+	const [filter, setFilter] = useState();
+	const[courses1, setCourses1] = useState();
   function hovered(){
     setIshovered(true)
   }
@@ -64,14 +67,62 @@ signOut(auth).then(() => {
 	},[])
 	let data = async()=>{
 	  let result = await axios.post(`${url}course_detail`);
-	   setCourses(result.data);
+	 
+	   let array = result.data;
+	   setFilter(result.data)
+	   let array1 = [];
+	   console.log(array)
+	   for(let i = 0; i< array.length; i++){
+		let match = false;
+		for(let j = 0; j< array1.length; j++){
+			if(array[i].type == array[j].type){
+				match = true;
+				break;
+			}
+		}
+		if(!match){
+			array1.push(array[i].type);
+		}
+	   }
+	   
+	 
+	   let array2 = [];
+	   for(let i = 0; i< array1.length; i++){
+		let match = false;
+		for(let j = 0; j< array2.length; j++){
+			if(array1[i] == array2[j]){
+				match = true;
+				break;
+			}
+		}
+		if(!match){
+			array2.push(array1[i]);
+		}
+	   }
+	 console.log(array2)
+	  setCourses(array2)
+	  
 	  
 	}
+	let courses_type = (e) =>{
+		let array = [];
+		
+	 for(let i = 0; i<filter.length; i++){
+	  if(filter[i].type == e){
+		  array.push(filter[i].title)
+		  
+	  }
+   }
+   console.log(e)
+   setCourses1(array)
+		document.querySelector('.coursetype').style.display = "block";
+	}
+
  
   
   return (
    <>
-      <div className='navbar sticky-top z-10 bg-purple-300 flex items-center justify-between font-sans' style={{boxShadow:'rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px'}}>
+      <div className='navbar sticky-top z-10 flex items-center justify-between font-sans' style={{backgroundColor:'#6B21A8',boxShadow:'rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px'}}>
 
         {/* Frame-1 */}
         <div className='flex justify-between h-full items-center ml-8'>
@@ -85,96 +136,38 @@ signOut(auth).then(() => {
 			{/* courses and hovered div */}
 			<div className='relative ' onMouseOver={hovered}  style={{marginTop:'10px'}}>
         		{/*hoveredDiv*/}
-		        	{(ishovered && <div className='absolute text-lg text-gray-700  bg-purple-50' onMouseLeave={unhovered}  style={{top:'175%',width :'320px',borderRadius:'3px',fontWeight:'500',zIndex:9999,boxShadow:'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'}} >
-                 {/*section-1 */}
-		            <div className='group flex border-b border-gray-800 hover:border-none justify-between items-center pl-6 pr-6  hover:bg-gray-200' style={{height:'50px'}}>
-		        	    <div>
-		        		  	<a className=' hover:no-underline text-gray-700 group-hover:text-purple-600' href="">Development</a>
-		        	  	</div>
-		        		<div >
-		        			<i className='fa-solid fa-angle-right '></i>
-		        		</div>
-		        	</div>
+		        	{(ishovered && 
+					<div className='flex absolute text-lg text-gray-700 ' onMouseLeave={unhovered}  style={{top:'175%', borderRadius:'3px',fontWeight:'500',zIndex:9999,boxShadow:'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'}}>
+					<div className='' style={{width: '300px'}}>
+                
 
 					{/*Section 2 */}
-		            	<div className=' group flex border-b border-gray-900  hover:border-none justify-between items-center pl-6 pr-6 hover:bg-gray-200' style={{height:'50px'}}>
+					{courses?courses.map(Element =>(
+						<div className=' group flex border-b border-gray-900  hover:border-none justify-between items-center pl-6 pr-6 hover:bg-gray-200  bg-purple-50' style={{height:'50px'}} onMouseOver={()=>courses_type(Element)}>
 		        		    <div className=''>
-		        			  	<a className='hover:no-underline  text-gray-700 group-hover:text-purple-600' href="">Business</a>
+		        			  	<a className='hover:no-underline  text-gray-700 group-hover:text-purple-600' href="">{Element}</a>
 		        		  	</div>
 		        			<div>
 		        				<i className='fa-solid fa-angle-right '></i>
 		        			</div>
 		        		</div>
 
-					{/*Section 3 */}
-		            	<div className='group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6 hover:bg-gray-200 ' style={{height:'50px'}}>
-		        		    <div className=''>
-		        			  	<a className='hover:no-underline  text-gray-700 group-hover:text-purple-600' href="">Finance & Accounting</a>
-		        		  	</div>
-		        			<div>
-		        				<i className='fa-solid fa-angle-right '></i>
-		        			</div>
-		        		</div>
+					)):''}
+		            	
 
-					{/*Section 4 */}
-		            	<div className='group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6 hover:bg-gray-200 ' style={{height:'50px'}}>
-		        		    <div className=''>
-		        			  	<a className=' hover:no-underline  text-gray-700 group-hover:text-purple-600' href="">It & Software</a>
-		        		  	</div>
-		        			<div>
-		        				<i className='fa-solid fa-angle-right '></i>
-		        			</div>
-		        		</div>
+					
+		           
+		    		</div>
+					<div className='hidden    h-fit w-80 z-10    text-gray-700   coursetype' onMouseLeave={()=>{document.querySelector('.coursetype').style.display = "none"}} >
+					{courses1?courses1.map(Element =>(
+						<div className='w-full  text-lg  border-b-2 pl-3 pr-3 h-12 flex items-center hover:bg-gray-200  hover:text-purple-600  bg-purple-50' >{Element}</div>
 
-					{/*Section 5 */}
-		            <div className='group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6  hover:bg-gray-200 ' style={{height:'50px'}}>
-		        	    <div>
-		        		  	<a className=' hover:no-underline  text-gray-700 group-hover:text-purple-600' href="">Design</a>
-		        	  	</div>
-		        		<div>
-		        			<i className='fa-solid fa-angle-right '></i>
-		        		</div>
-		        	</div>
-
-					{/*Section 6 */}
-		            <div className=' group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6  hover:bg-gray-200 ' style={{height:'50px'}}>
-		        	    <div className=''>
-		        		  	<a className=' hover:no-underline  text-gray-700 group-hover:text-purple-600' href="">Lifestyle</a>
-		        	  	</div>
-		        		<div>
-		        			<i className='fa-solid fa-angle-right '></i>
-		        		</div>
-		        	</div>
-
-					{/*Section 7 */}
-		            <div className='group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6  hover:bg-gray-200 ' style={{height:'50px'}}>
-		        	    <div >
-		        		  	<a className=' hover:no-underline  text-gray-700 group-hover:text-purple-600' href="">Music</a>
-		        	  	</div>
-		        		<div>
-		        			<i className='fa-solid fa-angle-right '></i>
-		        		</div>
-		        	</div>
-
-					{/*Section 8 */}
-		            <div className='group flex border-b border-gray-900 hover:border-none justify-between items-center pl-6 pr-6  hover:bg-gray-200 ' style={{height:'50px'}}>
-		        	    <div >
-		        		  	<a className='hover:no-underline  text-gray-700 group-hover:text-purple-600'  href="">Health & Fitness</a>
-		        	  	</div>
-		        		<div>
-		        			<i className='fa-solid fa-angle-right' ></i>
-		        		</div>
-		        	</div>
-					{/*Section 9 */}
-		            <div className='group flex hover:border-none justify-between items-center pl-6 pr-6 hover:bg-gray-200 ' style={{height:'50px'}}>
-		        	    <div >
-		        		  	<a className='hover:no-underline text-gray-700 group-hover:text-purple-600' href="">Office Productivity</a>
-		        	  	</div>
-		        		<div >
-		        			<i className='fa-solid fa-angle-right '></i>
-		        		</div>
-		        	</div>
-		    		</div>)}
+					)):''}
+	                </div>
+					</div>
+					)}
+					
+					
 
             {/* Courses */}
               <div className='w-24 text-lg flex items-center font-inter relative cursor-pointer' style={{fontWeight:'500'}} >
@@ -233,8 +226,9 @@ signOut(auth).then(() => {
 			<button className=' h-10 rounded-lg bg-gray-300 hover:bg-purple-600 border-2 border-purple-700 hover:border-gray-300 font-semibold  mr-8 hover:text-white font-sans' style= {{fontSize:'17px',width:'90px'}}onClick={logout}>Log out</button>
           </div>
 
-          <div className='h-full flex items-center mr-3 text-purple-600  hover:text-purple-700'>
-            <i className=" cursor-pointer fa-regular fa-circle-user bg-gray-300 hover:bg-gray-200 rounded-circle  " style={{fontSize:'39px'}}  onMouseOver={showProfile}></i>
+          <div className='h-full flex items-center mr-3'>
+           {/**  <i className=" cursor-pointer fa-regular fa-circle-user bg-gray-300 hover:bg-gray-200 rounded-circle  " style={{fontSize:'39px'}}  onMouseOver={showProfile}></i>*/}
+		   <div className='rounded-circle bg-white text-purple-700 h-9 w-9 flex items-center justify-center' onMouseOver={showProfile} >{username}</div>
           </div>
 
           </div>:<div className='flex'>
@@ -262,6 +256,7 @@ signOut(auth).then(() => {
 
 		</div>
 		</div>
+		
 
    </>
   )

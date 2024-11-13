@@ -1,7 +1,11 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { ProfileContext } from "../../profilecontext";
 function Profile(){
     const [username, setUserName] = useState(useContext(ProfileContext)[0]);
+	useEffect(()=>{
+		console.log(username)
+
+	},[])
     return(
         <>
             <div className='relative h-full mt-3 profile' onMouseLeave={()=>{
