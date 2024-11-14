@@ -1,27 +1,5 @@
 
-.SignupFrame1>div{
-    max-width:757px;
-    max-height:685px;
-}
-.SignupFrame1>div>img{
-    height: 100%;
-    width: 100%;
-}
-#SignupFrame2{
-    max-width: 414px;
-    margin: auto;
-}
-@media(max-width:900px){
-    .Signup>.SignupFrame1{
-        display: none;
-    }
-    .Signup>.SignupFrame1{
-        width: 0;
-    }
-    .Signup>.SignupFrame2{
-        width: 100%;
-    }
-}
+
 
 /* Navbar CSS */
 .navbar{
@@ -69,29 +47,6 @@
 .group:hover{
     font-weight: 500;
 }
-.SignupFrame1>div{
-    max-width:757px;
-    max-height:685px;
-}
-.SignupFrame1>div>img{
-    height: 100%;
-    width: 100%;
-}
-#SignupFrame2{
-    max-width: 414px;
-    margin: auto;
-}
-@media(max-width:900px){
-    .Signup>.SignupFrame1{
-        display: none;
-    }
-    .Signup>.SignupFrame1{
-        width: 0;
-    }
-    .Signup>.SignupFrame2{
-        width: 100%;
-    }
-}
 
 /* Navbar CSS */
 .navbar{
@@ -134,7 +89,7 @@
 
 /* MainContainer */
 .MainContainer{
-    max-width:1450px;
+    max-width:95%
 }
 
 /* Course_Details */

@@ -15,6 +15,7 @@ const register_apps = require('./api/users/register_apps');
 const user_detail = require('./api/users/user_detail');
 const jwt = require('jsonwebtoken');
 const courses = require('./api/teachers/courses');
+const user_review = require('./model/StudentModal/user_review');
 
 const url = "mongodb+srv://projects:123456ytrewq@cluster0.0qqnloi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
@@ -36,6 +37,7 @@ app.post('/user_password_reset', user_password_reset);
 app.post('/register_apps', register_apps);
 app.post('/user_detail', user_detail);
 app.post('/courses', courses);
+app.post('/user_review', user_review)
 
 app.post('/course_detail', (req, res)=>{
     const client = new MongoClient(url);
@@ -43,7 +45,7 @@ app.post('/course_detail', (req, res)=>{
     const collection = db.collection("courses");
     collection.find().toArray().then(result =>{
         res.send(result);
-        console.log(result)
+      
     }
     )
 
