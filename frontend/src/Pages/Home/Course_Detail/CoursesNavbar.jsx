@@ -20,6 +20,7 @@ export default function CoursesNavbar() {
     const [courses1, setCourses1] = useState();
     const [courses2, setCourses2] = useState();
     const [form, setForm] = useState();
+    const array3 = [];
     function ShowBar(){
         setShow(true)
         document.querySelector('.search1').style.display = 'none'
@@ -77,25 +78,32 @@ export default function CoursesNavbar() {
         data();
 
       },[])
-      let array3 = [];
+     let prev;
+     let next;
     let course_filter1 = (e) =>{
-        console.log(array3)
-        array3.push(e);
-        console.log(array3)
-        let array = courses2.filter(Element => Element.type == e);
-        setCourses1(array);
-        
-        document.getElementById(e).style.backgroundColor = '#c084fc';
-        let prev = e;
-        let next = e;
+           let match = false;
+           for(let  i = 0; i<courses.length; i++){
+            if(courses[i] == e){
+                   document.getElementById(e).style.backgroundColor= "#c084fc";
+            }
+            else{
+                document.getElementById(courses[i]).style.backgroundColor = "transparent";
+                
+            }
+           
+
+           }
+     
+            let array = courses2.filter(Element => Element.type == e);
+            setCourses1(array);
+            
+          
+       
+       
+       
       
-        console.log(array3)
-
-        array3.map((Element) =>(
-            document.getElementById(Element).style.backgroundColor='none'
-
-        ))
-        console.log(e)
+     
+        prev = e;
     }     
     let search = (e) =>{
         let data = e.target.value.toUpperCase();
@@ -129,6 +137,7 @@ export default function CoursesNavbar() {
 
     },120000)
    
+   
   
    
   return (
@@ -136,10 +145,10 @@ export default function CoursesNavbar() {
       <div className='w-full mt-12 '>
             <div className={`w-11/12 h-10 flex items-center  ${show?'justify-between':'justify-evenly'} pl-3 m-auto rounded-full`} style={{boxShadow:' rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px'}}>
                 {/* Nav Feilds */}
-                {(!show && <div className='Nav-Fields flex  w-full justify-between  text-gray-600 font-bold flex-nowrap whitespace-nowrap ' style={{fontSize:'16px'}}>
+                {(!show && <div className='Nav-Fields flex  w-full justify-evenly  text-gray-600 font-bold flex-nowrap whitespace-nowrap ' style={{fontSize:'16px'}}>
                    {courses?courses.map(Element =>(
-                    <div className=' rounded-full hover:bg-purple-400 hover:text-white ' onClick={() =>course_filter1(Element)} id={Element}>
-                        <a className='hover:no-underline h-fit hover:text-white'>{Element}</a>
+                    <div className='course_type rounded-full hover:bg-purple-400 hover:text-black ' onClick={() =>course_filter1(Element)} id={Element} >
+                        <a className='hover:no-underline h-fit hover:text-black'>{Element}</a>
                     </div>
 
                    )):''}

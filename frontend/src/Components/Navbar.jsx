@@ -13,11 +13,14 @@ export default function Navbar() {
 	const [profile, setProfile] = useState(false)
 	const [courses, setCourses] = useState();
     const [user, setUser] = useState(false);
-	const [username, setUserName] = useState(useContext(ProfileContext)[0]);
+	const [username, setUserName] = useState();
 	const [login, setLogin]  = useState(false);
 	const [type, setType] = useState();
 	const [filter, setFilter] = useState();
 	const[courses1, setCourses1] = useState();
+
+
+	const name = useContext(ProfileContext)[0];
   function hovered(){
     setIshovered(true)
   }
@@ -61,10 +64,13 @@ signOut(auth).then(() => {
 			setUser(false)
 		}
 		console.log(username)
+		setUserName(name.username);
+
 	
 	
 	  
 	},[])
+	
 	let data = async()=>{
 	  let result = await axios.post(`${url}course_detail`);
 	 
@@ -122,7 +128,7 @@ signOut(auth).then(() => {
   
   return (
    <>
-      <div className='navbar sticky-top z-10 flex items-center justify-between font-sans' style={{backgroundColor:'#6B21A8',boxShadow:'rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px'}}>
+      <div className='navbar sticky-top z-10 flex items-center justify-between font-sans text-white' style={{backgroundColor:'#6B21A8',boxShadow:'rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px'}}>
 
         {/* Frame-1 */}
         <div className='flex justify-between h-full items-center ml-8'>
@@ -137,7 +143,7 @@ signOut(auth).then(() => {
 			<div className='relative ' onMouseOver={hovered}  style={{marginTop:'10px'}}>
         		{/*hoveredDiv*/}
 		        	{(ishovered && 
-					<div className='flex absolute text-lg text-gray-700 ' onMouseLeave={unhovered}  style={{top:'175%', borderRadius:'3px',fontWeight:'500',zIndex:9999,boxShadow:'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'}}>
+					<div className='flex absolute text-lg text-white ' onMouseLeave={unhovered}  style={{top:'175%', borderRadius:'3px',fontWeight:'500',zIndex:9999,boxShadow:'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'}}>
 					<div className='' style={{width: '300px'}}>
                 
 
@@ -172,12 +178,12 @@ signOut(auth).then(() => {
             {/* Courses */}
               <div className='w-24 text-lg flex items-center font-inter relative cursor-pointer' style={{fontWeight:'500'}} >
 
-              	<div className={`${ishovered?'text-purple-900':'text-gray-800'}`}> {/*headline*/}
+              	<div className={`${ishovered?'text-purple-900':'text-white'}`}> {/*headline*/}
                 	    <p className=' mr-2' >Courses</p>
                   </div>
 
                   <div> {/*arrow icon*/}
-                      <i className= {`fa-solid text-purple-900 fa-angle-right transition-transform duration-200 ${ishovered?'rotate-90 ':''} `}></i>
+                      <i className= {`fa-solid text-white fa-angle-right transition-transform duration-200 ${ishovered?'rotate-90 ':''} `}></i>
                   </div>
               </div>
 			  {/* div to be used for hovering
@@ -197,7 +203,7 @@ signOut(auth).then(() => {
           </div>
 
           <div className=' search-bar w-fit text-lg mr-5'>
-            <i className=" magnify rounded-full fa-solid fa-magnifying-glass cursor-pointer" ></i>
+            <i className=" magnify rounded-full fa-solid fa-magnifying-glass cursor-pointer text-black" ></i>
           </div>
         </div>
 

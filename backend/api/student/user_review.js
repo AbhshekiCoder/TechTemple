@@ -33,7 +33,7 @@ router.post('/user_review', upload.single('file'), async(req, res) =>{
         name: name,
         technology: technology,
         description: description,
-        img: fs.readFileSync(path.join(__dirname + "../../upload/" + req.file.filename ));
+        img: fs.readFileSync(path.join(__dirname + "../../upload/" + req.file.filename ))
     })
     try{
       
@@ -45,3 +45,4 @@ router.post('/user_review', upload.single('file'), async(req, res) =>{
         console.log(err.message);
     }
 })
+module.exports = router;
