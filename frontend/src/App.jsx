@@ -19,6 +19,7 @@ import PrivateRoute from './Routes/PrivateRoute';
 import PublicRoute from './Routes/PublicRoutes';
 import Dashboard from './Pages/Dashboard';
 import { ProfileProvider } from './profilecontext'
+import CourseDetail from './Pages/CourseDetail'
 
 
 
@@ -39,6 +40,7 @@ function App() {
      <Route path = "/Signin" element={<Login/>}></Route>
       <Route path = "/Signup" element = {<Signup/>}></Route>
       <Route path='/' element ={<Home />}></Route>
+      <Route path='CourseDetail' element ={<CourseDetail />}></Route>
      </Route>
     </Routes>
     <Footer/>
