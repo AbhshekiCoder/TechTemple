@@ -32,7 +32,7 @@ export default function Course_detail() {
     <>
      <div className='MainContainer'>
     <div className='w-full bg-white'>
-        <div className=' text-black font-extrabold' style={{fontSize:'50px'}}>
+        <div className='font-extrabold text-gray-950' style={{fontSize:'50px'}}>
             <p>All The Skills You Need In One Place</p>
         </div>
         <div>

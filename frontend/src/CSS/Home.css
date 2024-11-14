@@ -1,6 +1,6 @@
 /* MainContainer */
 .MainContainer{
-    max-width:1467px ;
+    max-width:95% ;
     /* padding: 0px 30px; */
     margin: auto;
 }
@@ -28,4 +28,93 @@
 }
 .SelectedFeildCourses::-webkit-scrollbar{
     display: none; /* For Chrome, Safari, and newer Edge */
+}
+
+/* Review  */
+.reviewCardSubName{
+    font-size:18px;
+    margin-left:28px;
+}
+.reviewCardName{
+    font-size: 25px;
+    font-weight: 600;
+    margin: 0 50px 0 28px;
+    
+}
+.reviewCards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,300px)); /* Default for larger screens */
+    justify-content: space-between;
+    row-gap: 50px;
+    column-gap: 40px;
+}
+.reviewDesc{
+    margin: 4px 15px 12px 12px;
+    font-size:18px;
+    font-weight :500;
+    color:#7B7B7B;
+}
+.reviewImg{
+    width: 64px;
+}
+
+
+/* Media Query for Screens Below 1060px */
+@media (max-width: 1060px) {
+    .reviewHeading{
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(230px,250px)); /* Default for larger screens */
+        justify-content: space-evenly;
+    }
+    .reviewCards {
+        grid-template-columns: repeat(auto-fit, minmax(230px,250px)); /* Default for larger screens */
+        justify-content: space-evenly;
+        column-gap: 15px;
+    }
+    .reviewImg{
+        width:45px;
+    }
+    .reviewCardSubName{
+        font-size: 16px;
+        margin-left: 15px;
+    }
+    .reviewCardName{
+        font-size: 19px;
+        font-weight: 600;
+        margin-left: 15px;
+    }
+    .reviewDesc{
+        font-size: 15px;
+    }
+}
+@media (max-width: 840px) {
+    .reviewHeading{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px,300px)); /* Default for larger screens */
+    }
+    .reviewCards>div>div>p{
+        text-align: center;
+    }
+    .reviewCards {
+        grid-template-columns: repeat(auto-fit, minmax(230px,300px)); /* Default for larger screens */
+        column-gap: 15px;
+    }
+    .reviewCards>div{
+        padding: 20px 20px;
+    }
+    .reviewImg{
+        width:45px;
+    }
+    .reviewCardSubName{
+        font-size: 16px;
+        margin-left: 15px;
+    }
+    .reviewCardName{
+        font-size: 19px;
+        font-weight: 600;
+        margin-left: 15px;
+    }
+    .reviewDesc{
+        font-size: 15px;
+    }
 }
