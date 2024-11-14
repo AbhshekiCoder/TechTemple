@@ -19,7 +19,7 @@ router.post('/login', async(req, res) =>{
     try{
       
         let result =  await collection.findOne({email: email});
-            console.log(result.password)
+           
             if(!result){
                 res.send({success:false, message: "invalid email"})
                 return;
