@@ -15,6 +15,7 @@ import { FacebookAuthProvider } from 'firebase/auth';
 import { GithubAuthProvider } from 'firebase/auth'
 import { Link, useNavigate } from 'react-router-dom'
 import url from '../misc/url';
+import {Loader} from 'rsuite'
 
 
 
@@ -23,7 +24,10 @@ export default function Login() {
 	let [type, setType] = useState("success");
     let navigate = useNavigate();
 
-	
+	useEffect(()=>{
+		document.querySelector('.modal').style.display = 'none'
+
+	},[])
 	let signin = async(e)=>{
 		e.preventDefault();
 		let form = document.forms['Signinform'];
@@ -50,7 +54,10 @@ export default function Login() {
 			let result1 = await axios.post(`${url}token`, {token: result.data.token });
 			if(!result1){
 				setType("warning");
+				document.getElementById('loading').style.display = "block";
 				document.querySelector('.message').style.display = 'block';
+				document.getElementById('loading').style.display = "none";
+
 				document.getElementById("message").innerText = result1.data.message;
 				setTimeout(()=>{
 					document.querySelector('.message').style.display = 'none';
@@ -59,9 +66,12 @@ export default function Login() {
 			}
 			else{
 				setType("success");
+
+			document.getElementById('loading').style.display = "block";
 			document.querySelector('.message').style.display = 'block';
+			document.getElementById('loading').style.display = "none";
 			document.getElementById("message").innerText = result.data.message;
-			alert("login success")
+			
 			setTimeout(()=>{
 				document.querySelector('.message').style.display = 'none';
 
@@ -70,6 +80,7 @@ export default function Login() {
 			localStorage.setItem("token", result.data.token);
 			setTimeout(()=>{
 				navigate('/')
+				window.location.reload()
 
 			},4000)
 		
@@ -162,7 +173,11 @@ let result = await axios.post(`${url}register_apps`, obj);
 	}
   return (
 	<> 
-	<div className='absolute flex justify-center w-full'>
+	<div className='loading  text-2xl w-full h-full z-10 opacity-50 flex justify-center items-center modal hidden' id = "loading">
+
+<Loader className=' ' size='md'/>
+</div>
+	<div className='w-full h-fit flex justify-center  fixed '>
    <Message type={type} bordered showIcon    placement = "topCenter" className='mt-6 hidden message' >
 	<strong id = "message">Success!</strong> 
    </Message>
@@ -181,18 +196,18 @@ let result = await axios.post(`${url}register_apps`, obj);
 				<div>
 				<form action="" name = "Signinform" onSubmit={signin}>
 
-					<div className='w-8/12 m-auto'>
+					<div className='w-8/12 m-auto  max-sm:w-10/12'>
 					<input type="email" className='w-full h-10 border rounded-md pl-3 pr-3 mt-8' placeholder='Email' name="email" required />
 					</div>
 
-					<div className='w-8/12 m-auto'>
+					<div className='w-8/12 m-auto max-sm:w-10/12'>
 					<input type="password" className='w-full h-10 border rounded-md pl-3 pr-3 mt-8' placeholder='Password' name="password" required/>
 					</div>
 
-					<div className='w-8/12 m-auto'>
+					<div className='w-8/12 m-auto max-sm:w-10/12'>
 						<button className='w-full text-white h-10 mt-8 font-semibold text-xl ' style={{backgroundColor:'#920DE3'}}>Submit</button>
 					</div>
-					<div className='w-8/12 m-auto'>
+					<div className='w-8/12 m-auto max-sm:w-10/12'>
 
 					
 					<div className='flex justify-evenly w-full items-center mt-11'>

@@ -12,39 +12,40 @@ const jwt = require('jsonwebtoken')
 app.use(bodyParser.json());
 app.use(express.json());
 const router = express.Router();
-router.post('/login', async(req, res) =>{
-    const {email, password} = req.body;
+router.post('/signin', async(req, res) =>{
+    const {email, password, role} = req.body;
    
-   
+   console.log(role)
     const client = new MongoClient(url);
     const db = client.db("Tech_Temple");
-    const collection = db.collection("users");
+    const collection = db.collection(role);
     try{
       
-        let result =  await collection.findOne({email: email});
-           
-            if(!result){
-                res.send({success:false, message: "invalid email"})
+        let result =  await collection.find({$and:[{email: email}, {password: password}]}).toArray();
+           console.log(result)
+            if(result.length< 1){
+                res.send({success:false, message: "invalid email or password"})
                 return;
  
              }
-              try{
-                let result1 = await bcrypt.compare(password, result.password);
-                if(result1){
-               
-                    const token = jwt.sign({ email: email }, '123456', { expiresIn: '1h' });
-                    res.send({success: true, message: "login successfully", token: token});
-                }
-                else{
-                     res.send({success: false, message: "invalid password"})
+             else{
+
              
-               }
+              try{
+               
+              
+                    console.log(role)
+                    const token = jwt.sign({ email: email }, '123456', { expiresIn: '1h' });
+                    res.send({success: true, message: "login successfully", token: token, role: role});
+                
+                
  
 
               }catch(err){
-                res.send({success:false, message: "invalid email"})
+                console.log(err.message);
 
               }
+            }
             
             
 
@@ -56,10 +57,6 @@ router.post('/login', async(req, res) =>{
         console.log(err.message);
     }
 })
-
-
-
-
 
 
 module.exports = router;

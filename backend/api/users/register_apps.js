@@ -1,7 +1,10 @@
 const express = require('express')
 const  bodyParser = require('body-parser');
 const app = express();
-var url = "mongodb+srv://projects:123456ytrewq@cluster0.0qqnloi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";;
+const dotenv = require('dotenv');
+
+dotenv.config()
+const url = process.env.URL
 const { MongoClient} = require('mongodb');
 const register = require('../../model/usermodal/Register');
 const bcrypt = require('bcrypt');

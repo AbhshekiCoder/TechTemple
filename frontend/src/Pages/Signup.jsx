@@ -41,7 +41,7 @@ export default function Signup() {
 
 			},2000)
 			setTimeout(()=>{
-				navigate('/Signin')
+				navigate('/login')
 
 			},4000)
 
@@ -136,7 +136,7 @@ let result = await axios.post(`${url}register_apps`, obj);
   return (
 	<>
 
-   <div className='absolute flex justify-center w-full'>
+   <div className='flex justify-center w-full h-fit   fixed'>
    <Message type={type} bordered showIcon    placement = "topCenter" className='mt-6 hidden message' >
 	<strong id = "message">Success!</strong> 
    </Message>

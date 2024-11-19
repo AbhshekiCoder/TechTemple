@@ -13,6 +13,7 @@ import HidebarImg from '../../../assets/Hidebar.png'
 import axios from 'axios';
 import url from '../../../misc/url';
 import '../../../CSS/coursenavbar.css'
+import {Loader} from 'rsuite';
 
 export default function CoursesNavbar() {
     const [show, setShow] = useState(false);
@@ -141,17 +142,22 @@ export default function CoursesNavbar() {
   
    
   return (
+    
     <div>
+    
       <div className='w-full mt-12 '>
             <div className={`w-11/12 h-10 flex items-center  ${show?'justify-between':'justify-evenly'} pl-3 m-auto rounded-full`} style={{boxShadow:' rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px'}}>
                 {/* Nav Feilds */}
-                {(!show && <div className='Nav-Fields flex  w-full justify-evenly  text-gray-600 font-bold flex-nowrap whitespace-nowrap ' style={{fontSize:'16px'}}>
+                {(!show && <div className='Nav-Fields flex  w-full justify-evenly   text-gray-600 font-bold flex-nowrap whitespace-nowrap max-sm:justify-between ' style={{fontSize:'16px'}}>
                    {courses?courses.map(Element =>(
                     <div className='course_type rounded-full hover:bg-purple-400 hover:text-black ' onClick={() =>course_filter1(Element)} id={Element} >
                         <a className='hover:no-underline h-fit hover:text-black'>{Element}</a>
                     </div>
 
-                   )):''}
+                   )):<div className='loading absolute text-2xl w-full h-full z-10 opacity-50 flex justify-center items-center modal' id = "loading">
+
+                    <Loader className='fixed ' size='md'/>
+                   </div>}
                     
                    
                 </div>)}
@@ -196,7 +202,7 @@ export default function CoursesNavbar() {
                     <p className='text-lg font-bold  '>{Element.title}</p>
                 </div>
                 <div className='ml-6 mt-2 mr-3 mb-1 'style={{color:'#49454F'}}>
-                    <p className=' max-sm:text-xs'>{Element.description.length > 129?Element.description.substr(40) + '...':Element.description}
+                    <p className=' max-sm:text-xs'>{Element.description.length > 129?Element.description.substr(0, 129) + '...':Element.description}
                     </p>
                 </div>
                 <div className='flex justify-end ml-6 mt-6 max-lg:mt-10 max-md:mt-5 max-sm:mt-6  max-sm:p-3 '>

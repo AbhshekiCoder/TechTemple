@@ -1,8 +1,9 @@
 import logo from '../assets/logo.png';
 function Footer(){
+  
     return(
         <>
-        <div className="footer w-full   min-h-72 p-6  max-sm:p-0" style={{backgroundColor: "rgba(38, 38, 38, 1)"}}>
+        <div className="footer w-full   min-h-72 p-6  max-sm:p-0    " style={{backgroundColor: "rgba(38, 38, 38, 1)"}}>
         <div className='w-full flex justify-center '>
         <div className='row  w-full  p-2'>
 
@@ -92,9 +93,14 @@ Support
  
  
  </div>
-</div>
-
+         </div>
+        
         </div>
+        <div className='flex justify-center text-gray-500 mt-3 font-sans'>
+         @copyright reserved by TechTemple
+
+         </div>
+
        
             
         </div>

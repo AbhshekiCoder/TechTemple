@@ -7,6 +7,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors())
+
+
 const register = require('./api/users/Register');
 const login = require('./api/users/Login');
 const user_profile_update = require('./api/users/Update');
@@ -15,12 +17,19 @@ const register_apps = require('./api/users/register_apps');
 const user_detail = require('./api/users/user_detail');
 const jwt = require('jsonwebtoken');
 const courses = require('./api/teachers/courses');
-const user_review = require('./model/StudentModal/user_review');
+const user_review = require('./api/student/user_review');
+const review = require('./api/fetch/review');
+const customer_contact = require('./api/users/customer_contact');
+const signin = require('./api/users/signin')
+const dotenv = require('dotenv');
+const enroll_courses = require('./api/fetch/coursesenroll')
 
-const url = "mongodb+srv://projects:123456ytrewq@cluster0.0qqnloi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+dotenv.config()
+const url = process.env.URL
 
 function mongodbConnect(){
-    mongoose.connect('mongodb+srv://projects:123456ytrewq@cluster0.0qqnloi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0').then(()=>{
+    mongoose.connect(url).then(()=>{
         console.log('connected');
 
     }).catch((err)=>{
@@ -38,6 +47,10 @@ app.post('/register_apps', register_apps);
 app.post('/user_detail', user_detail);
 app.post('/courses', courses);
 app.post('/user_review', user_review)
+app.post('/review', review)
+app.post('/customer_contact', customer_contact);
+app.post('/signin', signin)
+app.get('/enroll_courses/:id', enroll_courses)
 
 app.post('/course_detail', (req, res)=>{
     const client = new MongoClient(url);
@@ -61,6 +74,7 @@ app.post('/token', (req, res)=>{
       
     });
   });
+  
 
 app.get('/', (req, res)=>{
     res.send('<h1>hello</h1>')

@@ -1,9 +1,13 @@
 const express = require('express')
 const  bodyParser = require('body-parser');
 const app = express();
-var url = "mongodb+srv://projects:123456ytrewq@cluster0.0qqnloi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";;
+const dotenv = require('dotenv');
+
+dotenv.config()
+const url = process.env.URL
 const { MongoClient} = require('mongodb');
 var fs = require('fs');
+const path = require('path')
 const user_review = require('../../model/StudentModal/user_review')
 
 app.use(bodyParser.json());
@@ -13,7 +17,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
-        const uploadDir = path.join(__dirname, '../../upload/');
+        const uploadDir = path.join(__dirname, '/upload/');
         cb(null, uploadDir);
 
     },
@@ -21,20 +25,23 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + '' + file.originalname);
     }
 })
-var upload = multer.upload({storage: storage});
+var upload = multer({storage: storage});
 router.post('/user_review', upload.single('file'), async(req, res) =>{
-    const {name, technology, description, img} = req.body;
+    const {name, technology, description, type, rating} = req.body;
+    
    
-   
+  
     const client = new MongoClient(url);
     const db = client.db("Tech_Temple");
     const collection = db.collection("review")  ;
-    const obj = new user_review({
+    const obj = {
         name: name,
         technology: technology,
         description: description,
-        img: fs.readFileSync(path.join(__dirname + "../../upload/" + req.file.filename ))
-    })
+        img: fs.readFileSync(path.join(__dirname + "/upload/" + req.file.filename )),
+        type: type,
+        rating: rating
+    }
     try{
       
         let result =  await collection.insertOne(obj).then(()=>{

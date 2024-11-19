@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import logo from '../assets/logo.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ProfileContext } from '../profilecontext';
 import axios from 'axios'
 import url from '../misc/url'
 import { auth } from '../firebase/firebase';
 import { signOut } from '../firebase/firebase';
 import Profile from './Navbar/Profile';
+import Sidebar from '../Components/Sidebar'
 
-export default function Navbar() {
+export default function Navbar({sidebar_open}) {
   	const [ishovered, setIshovered] = useState(false)
-	const [profile, setProfile] = useState(false)
+
 	const [courses, setCourses] = useState();
     const [user, setUser] = useState(false);
 	const [username, setUserName] = useState();
@@ -18,9 +19,10 @@ export default function Navbar() {
 	const [type, setType] = useState();
 	const [filter, setFilter] = useState();
 	const[courses1, setCourses1] = useState();
+	
 
-
-	const name = useContext(ProfileContext)[0];
+    const Navigate = useNavigate()
+	const name = useContext(ProfileContext)
   function hovered(){
     setIshovered(true)
   }
@@ -28,28 +30,13 @@ export default function Navbar() {
 	setIshovered(false)
   }
   function showProfile(){
-	setProfile(!profile);
-  document.querySelector('.profile').style.display = "block";
+	document.querySelector('.profile').style.display = "block"
+
   }
 
  
   
-  function logout(){
-    console.log("hello")
-    localStorage.removeItem("token");
   
-	setIshovered(false);
-	setProfile(false);
-	setLogin(false);
-	
-  
-signOut(auth).then(() => {
-  console.log("hello")
-}).catch((error) => {
-  // An error happened.
-});
-
-  }
 
   
   
@@ -62,14 +49,33 @@ signOut(auth).then(() => {
 		}
 		else{
 			setUser(false)
+			setLogin(false)
 		}
-		console.log(username)
-		setUserName(name.username);
+		console.log(name)
+		
 
 	
 	
 	  
 	},[])
+	useEffect( ()=>{
+		data();
+		let token = localStorage.getItem("token");
+		if(token){
+			setUser(true);
+			setLogin(true)
+		}
+		else{
+			setUser(false)
+			setLogin(false)
+		}
+		console.log(name)
+		
+
+	
+	
+	  
+	},[sidebar_open])
 	
 	let data = async()=>{
 	  let result = await axios.post(`${url}course_detail`);
@@ -87,7 +93,8 @@ signOut(auth).then(() => {
 			}
 		}
 		if(!match){
-			array1.push(array[i].type);
+			array1.push({"name": array[i].type, "id": array[i]._id});
+			console.log(array1)
 		}
 	   }
 	   
@@ -96,36 +103,56 @@ signOut(auth).then(() => {
 	   for(let i = 0; i< array1.length; i++){
 		let match = false;
 		for(let j = 0; j< array2.length; j++){
-			if(array1[i] == array2[j]){
+			if(array1[i].name == array2[j].name){
 				match = true;
 				break;
 			}
 		}
 		if(!match){
-			array2.push(array1[i]);
+			array2.push({"name": array1[i].name, "id": array1[i].id});
 		}
 	   }
 	 console.log(array2)
-	  setCourses(array2)
+	  setCourses(array2);
+	  
 	  
 	  
 	}
 	let courses_type = (e) =>{
-		let array = [];
+		let array2= [];
 		
 	 for(let i = 0; i<filter.length; i++){
+		
 	  if(filter[i].type == e){
-		  array.push(filter[i].title)
+		  array2.push({"title":filter[i].title, "id": filter[i]._id})
+		
 		  
 	  }
+	  console.log(array2)
    }
-   console.log(e)
-   setCourses1(array)
+   console.log(array2)
+   setCourses1(array2)
 		document.querySelector('.coursetype').style.display = "block";
 	}
-
- 
   
+	function logout(){
+		console.log("hello")
+		localStorage.removeItem("token");
+	  
+		
+		setLogin(false)
+		document.querySelector('.profile').style.display = "none"
+	
+		
+	
+	
+	
+	  }
+	function courses_detail(e){
+		localStorage.setItem('id', e);
+		Navigate('/CoursesDetail')
+
+	}
   return (
    <>
       <div className='navbar sticky-top z-10 flex items-center justify-between font-sans text-white' style={{backgroundColor:'#6B21A8',boxShadow:'rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px'}}>
@@ -149,12 +176,12 @@ signOut(auth).then(() => {
 
 					{/*Section 2 */}
 					{courses?courses.map(Element =>(
-						<div className=' group flex border-b border-gray-900  hover:border-none justify-between items-center pl-6 pr-6 hover:bg-gray-200  bg-purple-50' style={{height:'50px'}} onMouseOver={()=>courses_type(Element)}>
+						<div className=' group flex border-b border-gray-900  hover:border-none justify-between items-center pl-6 pr-6 hover:bg-gray-200  bg-purple-50' style={{height:'50px'}} onMouseOver={()=>courses_type(Element.name)}>
 		        		    <div className=''>
-		        			  	<a className='hover:no-underline  text-gray-700 group-hover:text-purple-600' href="">{Element}</a>
+		        			  	<a className='hover:no-underline  text-gray-700 group-hover:text-purple-600' href="">{Element.name}</a>
 		        		  	</div>
 		        			<div>
-		        				<i className='fa-solid fa-angle-right '></i>
+		        				<i className='fa-solid fa-angle-right text-black '></i>
 		        			</div>
 		        		</div>
 
@@ -166,7 +193,7 @@ signOut(auth).then(() => {
 		    		</div>
 					<div className='hidden    h-fit w-80 z-10    text-gray-700   coursetype' onMouseLeave={()=>{document.querySelector('.coursetype').style.display = "none"}} >
 					{courses1?courses1.map(Element =>(
-						<div className='w-full  text-lg  border-b-2 pl-3 pr-3 h-12 flex items-center hover:bg-gray-200  hover:text-purple-600  bg-purple-50' >{Element}</div>
+						<div className='w-full  text-lg  border-b-2 pl-3 pr-3 h-12 flex items-center hover:bg-gray-200  hover:text-purple-600  bg-purple-50' onClick={()=>courses_detail(Element.id)} id={Element.id}>{Element.title}</div>
 
 					)):''}
 	                </div>
@@ -233,13 +260,13 @@ signOut(auth).then(() => {
           </div>
 
           <div className='h-full flex items-center mr-3'>
-           {/**  <i className=" cursor-pointer fa-regular fa-circle-user bg-gray-300 hover:bg-gray-200 rounded-circle  " style={{fontSize:'39px'}}  onMouseOver={showProfile}></i>*/}
-		   <div className='rounded-circle bg-white text-purple-700 h-9 w-9 flex items-center justify-center' onMouseOver={showProfile} >{username}</div>
+        <i className=" cursor-pointer fa-regular fa-circle-user bg-gray-300 hover:bg-gray-200 rounded-circle  " style={{fontSize:'39px'}}  onMouseOver={showProfile}></i>
+		  
           </div>
 
           </div>:<div className='flex'>
 			<div className='text-purple-800'>
-          <Link to = "/Signin">  <button className='signin-n transition-all  ease-in-out  h-10 rounded-lg  border-2 border-purple-600 hover:border-purple-300  mr-8 hover:text-white font-sans bg-purple-300 hover:bg-purple-500 'style={{width:'90px',fontWeight:'500'}}>Log In</button> </Link>
+          <Link to = "/login">  <button className='signin-n transition-all  ease-in-out  h-10 rounded-lg  border-2 border-purple-600 hover:border-purple-300  mr-8 hover:text-white font-sans bg-purple-300 hover:bg-purple-500 'style={{width:'90px',fontWeight:'500'}}>Log In</button> </Link>
           </div>
 
           <div className=' rounded-lg bg-gray-200'><div>
@@ -253,15 +280,16 @@ signOut(auth).then(() => {
          
 			{/* Profile Section */}
 
-				{(profile && <Profile/>
-				)}
+			 <Profile/>
+				
 			{/* ------------------ */}
         </div>
-		<div className='hidden items-center max-xl:flex mr-6 text-2xl'>
-		<i class="fa-solid fa-bars"></i>
+		<div className='hidden items-center max-xl:flex mr-6 text-2xl' >
+		<i class="fa-solid fa-bars" onClick={sidebar_open}></i>
 
 		</div>
 		</div>
+		
 		
 
    </>

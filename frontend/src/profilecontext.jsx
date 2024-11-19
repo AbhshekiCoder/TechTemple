@@ -2,12 +2,13 @@ import {createContext, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import url from './misc/url';
 import Navbar from './Components/Navbar';
+import Profile from './Components/Navbar/Profile';
 
 export const ProfileContext = createContext();
 export const ProfileProvider = ({children})=>{
    
    
-   let [users, setUsers]  = useState(true);
+   let [users, setUsers]  = useState();
 
    useEffect(()=>{
     let token= localStorage.getItem('token');
@@ -24,8 +25,8 @@ export const ProfileProvider = ({children})=>{
             let data = name[0].split('');
          
             
-            setUsers({name: name[0], username: data[0]});
-            
+            setUsers(name[0]);
+            console.log(users)
         
             }
             
@@ -40,12 +41,43 @@ export const ProfileProvider = ({children})=>{
 
 
    },[]);
-   
+   useEffect(()=>{
+    let token= localStorage.getItem('token');
+    if(token){
+  
+       
+        let user = async()=>{
+      
+         
+           
+              let result = await axios.post(`${url}user_detail`, {token});
+            console.log(result.data);
+            let name= result.data.name.split(' ');
+            let data = name[0].split('');
+         
+            
+            setUsers(name[0]);
+            console.log(users)
+        
+            }
+            
+        
+            
+            user();
+                
+          
+    }
+    
+ 
+
+
+   },[<Profile/>]);
+  
    
   
     return(
         <>
-            <ProfileContext.Provider value = {[users]}>
+            <ProfileContext.Provider value = {users}>
             {children}
 
             </ProfileContext.Provider>

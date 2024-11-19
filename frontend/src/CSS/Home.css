@@ -47,15 +47,16 @@
     justify-content: space-between;
     row-gap: 50px;
     column-gap: 40px;
+    max-width: 1400px;
+    height: 320px;
+    overflow-x: auto;
 }
 .reviewDesc{
     margin: 4px 15px 12px 12px;
     font-size:18px;
     font-weight :500;
     color:#7B7B7B;
-}
-.reviewImg{
-    width: 64px;
+   
 }
 
 
@@ -117,4 +118,7 @@
     .reviewDesc{
         font-size: 15px;
     }
+}
+::-webkit-scrollbar{
+    display: none;
 }

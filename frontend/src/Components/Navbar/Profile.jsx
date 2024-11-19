@@ -1,13 +1,14 @@
 import { useState, useContext, useEffect } from "react";
 import { ProfileContext } from "../../profilecontext";
 function Profile(){
-    const [username, setUserName] = useState(useContext(ProfileContext)[0].name);
+    const [username, setUserName] = useState(useContext(ProfileContext));
 	useEffect(()=>{
+		console.log(username)
 		
 	},[])
     return(
         <>
-            <div className='relative h-full mt-3 profile' onMouseLeave={()=>{
+            <div className='relative h-full mt-3 profile hidden' onMouseLeave={()=>{
           document.querySelector('.profile').style.display = "none"
         }}>
 					<div className='absolute bg-white w-48 font-inter -right-2 text-base  text-gray-600' style={{top:'27px',zIndex:'999',boxShadow: 'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px'}} >
