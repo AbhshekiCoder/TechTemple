@@ -14,7 +14,9 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
 };
 
+
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 const register = require('./api/users/Register');
 const login = require('./api/users/Login');
 const user_profile_update = require('./api/users/Update');
