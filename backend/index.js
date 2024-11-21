@@ -6,7 +6,17 @@ const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(cors())
+app.use(cors());
+
+const options = {
+  origin: 'https://tech-temple.vercel.app',
+  optionsSuccessStatus: 200,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: "Content-Type, Authorization"
+};
+console.log("hello")
+
+app.use(cors(options));
 const register = require('./api/users/Register');
 const login = require('./api/users/Login');
 const user_profile_update = require('./api/users/Update');
