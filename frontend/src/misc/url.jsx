@@ -1,5 +1,5 @@
 
 
-const url = "http://localhost:3000/";
+const url = "https://techtemple.onrender.com/";
 
 export default url;
