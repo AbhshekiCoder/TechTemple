@@ -9,7 +9,7 @@ app.use(express.json());
 
 
 const corsOptions = {
-    origin: 'https://techtemple-123232.onrender.com/', // Your frontend URL
+    origin: 'https://techtemple-123232.onrender.com', // Your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
 };
