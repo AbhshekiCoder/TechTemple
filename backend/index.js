@@ -17,6 +17,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
+app.use(cors({ origin: '*' }));
+
 const register = require('./api/users/Register');
 const login = require('./api/users/Login');
 const user_profile_update = require('./api/users/Update');
