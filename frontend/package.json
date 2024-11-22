@@ -9,6 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "proxy": "https://techtemple.onrender.com",
+
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "axios": "^1.7.7",
