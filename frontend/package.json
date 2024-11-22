@@ -3,13 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "https://techtemple.onrender.com",
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "proxy": "https://techtemple.onrender.com",
 
   "dependencies": {
     "@popperjs/core": "^2.11.8",
