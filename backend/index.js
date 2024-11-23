@@ -29,22 +29,23 @@ const quiz = require('./api/fetch/quiz')
 
 
 
+
 mongodbConnect();
 
-app.post('/register', register);
-app.post('/login', login);
-app.put('/user_profile_update', user_profile_update);
-app.post('/user_password_reset', user_password_reset);
-app.post('/register_apps', register_apps);
-app.post('/user_detail', user_detail);
-app.post('/courses', courses);
-app.post('/user_review', user_review)
-app.post('/review', review)
-app.post('/customer_contact', customer_contact);
-app.post('/signin', signin)
-app.get('/enroll_courses/:id', enroll_courses)
-app.get('/quiz', quiz)
-app.post('/course_detail', (req, res)=>{
+app.use('/register', register);
+app.use('/login', login);
+app.use('/user_profile_update', user_profile_update);
+app.use('/user_password_reset', user_password_reset);
+app.use('/register_apps', register_apps);
+app.use('/user_detail', user_detail);
+app.use('/courses', courses);
+app.use('/user_review', user_review)
+app.use('/review', review)
+app.use('/customer_contact', customer_contact);
+app.use('/signin', signin)
+app.use('/enroll_courses/:id', enroll_courses)
+app.use('/quiz', quiz)
+app.use('/course_detail', (req, res)=>{
     const client = new MongoClient(url);
     const db = client.db("Tech_Temple");
     const collection = db.collection("courses");
@@ -55,7 +56,7 @@ app.post('/course_detail', (req, res)=>{
     )
 
 })
-app.post('/token', (req, res)=>{
+app.use('/token', (req, res)=>{
     let {token} = req.body;
     if (!token) return res.status(403).send('Token is required');
     jwt.verify(token, '123456', (err, decoded) => {
@@ -69,7 +70,7 @@ app.post('/token', (req, res)=>{
   
   
 
-app.get('/', (req, res)=>{
+app.use('/', (req, res)=>{
     res.send('<h1>hello</h1>')
 })
 
