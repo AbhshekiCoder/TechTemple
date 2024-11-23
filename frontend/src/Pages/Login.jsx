@@ -103,7 +103,7 @@ let obj ={
 	token: token
 }
 
-let result = await axios.post(`${url}register_apps`, obj);
+let result = await axios.post(`${url}register_apps/register_apps`, obj);
 		if(!result.data.success){
 			setType("warning");
 			document.querySelector('.message').style.display = 'block';
