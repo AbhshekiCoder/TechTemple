@@ -19,7 +19,7 @@ import { Navigation, Pagination, Scrollbar, Thumbs} from 'swiper/modules';
 export default function Review() {
     let [reviewdata, setReviewData] = useState()
     let review = async()=>{
-        let result = await axios.post(`${url}review`)
+        let result = await axios.post(`${url}review/review`)
         setReviewData(result.data);
         console.log(reviewdata)
      

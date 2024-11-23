@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import google from '../assets/google.png'
 import facebook from '../assets/facebook.png'
 import apple from '../assets/apple.png'
-import SignupFrame1_img from '../assets/SignupImage.png'
+
 import {signInWithPopup} from 'firebase/auth';
 import axios from 'axios'
 import { Message } from 'rsuite';

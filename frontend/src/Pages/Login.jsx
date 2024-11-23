@@ -2,7 +2,7 @@ import {React, useEffect, useState} from 'react'
 import google from '../assets/google.png'
 import facebook from '../assets/facebook.png'
 import apple from '../assets/apple.png'
-import SignupFrame1_img from '../assets/SignupImage.png'
+
 import axios from 'axios'
 import { Message } from 'rsuite';
 import {signInWithPopup} from 'firebase/auth';
@@ -38,7 +38,7 @@ export default function Login() {
 			password: password
 		}
 
-		let result = await axios.post(`${url}login`, obj);
+		let result = await axios.post(`${url}login/login`, obj);
 		if(!result.data.success){
 			setType("warning");
 			document.querySelector('.message').style.display = 'block';

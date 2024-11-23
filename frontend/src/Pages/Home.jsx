@@ -42,7 +42,7 @@ function Home({sidebar_open, profile, logout}){
     formData.append('type', file.type)
     formData.append('rating', rating)
     console.log(formData)
-    let result = await axios.post(`${url}user_review`, formData);
+    let result = await axios.post(`${url}user_review/user_review`, formData);
     alert(result.data)
     
   }

@@ -38,7 +38,7 @@ function App() {
 let data = async()=>{
   let token = localStorage.getItem('token');
 if(token){
- let result1 = await axios.post(`${url}user_detail`, {token});
+ let result1 = await axios.post(`${url}user_detail/user_detail`, {token});
 let data = result1.data.name.split(' ');
 setUserName(data[0])
 console.log(data[0])
@@ -61,7 +61,7 @@ else{
     let token = localStorage.getItem('token');
     setNum(num + 1);
     if(token){
-      let result1 = await axios.post(`${url}user_detail`, {token});
+      let result1 = await axios.post(`${url}user_detail/user_detail`, {token});
      let data = result1.data.name.split(' ');
      setUserName(data[0])
      console.log(data[0])

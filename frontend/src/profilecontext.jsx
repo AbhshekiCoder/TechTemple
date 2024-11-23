@@ -50,7 +50,7 @@ export const ProfileProvider = ({children})=>{
       
          
            
-              let result = await axios.post(`${url}user_detail`, {token});
+              let result = await axios.post(`${url}user_detail/user_detail`, {token});
             console.log(result.data);
             let name= result.data.name.split(' ');
             let data = name[0].split('');
