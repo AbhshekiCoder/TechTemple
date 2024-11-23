@@ -1,5 +1,5 @@
 
 
-const url = "https://techtemple.onrender.com/";
+const url = "https://tech-temple.onrender.com/";
 
 export default url;
