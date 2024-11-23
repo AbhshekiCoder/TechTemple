@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config()
 const url = process.env.URL
 const { MongoClient} = require('mongodb');
-const register = require('../../model/usermodal/Register');
+const user = require('../../model/usermodal/Register');
 const bcrypt = require('bcrypt');
 
 app.use(bodyParser.json());
@@ -18,7 +18,7 @@ router.post('/register', async(req, res) =>{
     let password1 = 0;
     try{
         let password1 = await bcrypt.hash(password, 10);
-        let obj = new register({
+        let obj = new user({
             name: name,
             email: email,
             password: password1
@@ -32,11 +32,7 @@ router.post('/register', async(req, res) =>{
                 res.send({success: false, message: "email already registered"});
             }
             else{
-                collection.insertOne(obj).then(()=>{
-                    res.send({success: true, message: "successfully registered"});
-                    console.log("send successfully");
-
-                })
+               
 
             }
         })

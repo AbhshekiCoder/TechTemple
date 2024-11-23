@@ -17,6 +17,6 @@ let user_review_schema = new mongoose.Schema({
 
 })
 
-const user_review = new mongoose.model('user_review', user_review_schema);
+const user_review =  mongoose.model('user_review', user_review_schema);
 
 module.exports = user_review;

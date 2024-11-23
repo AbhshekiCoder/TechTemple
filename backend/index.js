@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const {MongoClient} = require('mongodb');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const mongodbConnect = require('./config/ConnectDB');
 const app = express();
 app.use(bodyParser.json());
 app.use(express.json());
@@ -23,20 +24,11 @@ const customer_contact = require('./api/users/customer_contact');
 const signin = require('./api/users/signin')
 const dotenv = require('dotenv');
 const enroll_courses = require('./api/fetch/coursesenroll')
+const quiz = require('./api/fetch/quiz')
 
 
-dotenv.config()
-const url = process.env.URL
 
-function mongodbConnect(){
-    mongoose.connect(url).then(()=>{
-        console.log('connected');
 
-    }).catch((err)=>{
-        console.log(err.message);
-    })
-
-}
 mongodbConnect();
 
 app.post('/register', register);
@@ -51,7 +43,7 @@ app.post('/review', review)
 app.post('/customer_contact', customer_contact);
 app.post('/signin', signin)
 app.get('/enroll_courses/:id', enroll_courses)
-
+app.get('/quiz', quiz)
 app.post('/course_detail', (req, res)=>{
     const client = new MongoClient(url);
     const db = client.db("Tech_Temple");
@@ -74,6 +66,7 @@ app.post('/token', (req, res)=>{
       
     });
   });
+  
   
 
 app.get('/', (req, res)=>{

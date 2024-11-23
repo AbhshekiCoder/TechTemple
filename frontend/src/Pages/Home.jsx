@@ -46,7 +46,10 @@ function Home({sidebar_open, profile, logout}){
     alert(result.data)
     
   }
-  
+  useEffect(()=>{
+    localStorage.removeItem('users')
+
+  },[])
     return(
         <>
          

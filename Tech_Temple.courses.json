@@ -1,0 +1,152 @@
+[{
+  "_id": {
+    "$oid": "673daec00900c48012f3241b"
+  },
+  "title": "Digital Marketing",
+  "description": "In this web development course you will learn about HTML/CSS, MySQL, PHP, JavaScript, and React and build a website from scratch!",
+  "price": 1000,
+  "duration": 6,
+  "projects": [
+    {
+      "tittle": "an e-commerce site",
+      "description": "an web appskdkdlkdlkdf"
+    }
+  ],
+  "languages": [
+    "Hindi"
+  ],
+  "type": "Marketing"
+},
+{
+  "_id": {
+    "$oid": "673daec00900c48012f3241c"
+  },
+  "title": "web devlopment",
+  "description": "In this web development course you will learn about HTML/CSS, MySQL, PHP, JavaScript, and React and build a website from scratch!",
+  "price": 1000,
+  "duration": 6,
+  "projects": [
+    {
+      "tittle": "an e-commerce site",
+      "description": "an web appskdkdlkdlkdf"
+    }
+  ],
+  "languages": [
+    "Hindi"
+  ],
+  "type": "It & Courses"
+},
+{
+  "_id": {
+    "$oid": "673daec00900c48012f3241d"
+  },
+  "title": "Android Devlopment",
+  "description": "In this web development course you will learn about HTML/CSS, MySQL, PHP, JavaScript, and React and build a website from scratch!",
+  "price": 1000,
+  "duration": 6,
+  "projects": [
+    {
+      "tittle": "an e-commerce site",
+      "description": "an web appskdkdlkdlkdf"
+    }
+  ],
+  "languages": [
+    "Hindi"
+  ],
+  "type": "It & Courses"
+},
+{
+  "_id": {
+    "$oid": "673daec00900c48012f3241e"
+  },
+  "title": "It & Courses",
+  "description": "In this web development course you will learn about HTML/CSS, MySQL, PHP, JavaScript, and React and build a website from scratch!",
+  "price": 1000,
+  "duration": 6,
+  "projects": [
+    {
+      "tittle": "an e-commerce site",
+      "description": "an web appskdkdlkdlkdf"
+    }
+  ],
+  "languages": [
+    "Hindi"
+  ],
+  "type": "It & Courses"
+},
+{
+  "_id": {
+    "$oid": "673daec00900c48012f3241f"
+  },
+  "title": "Data SCience",
+  "description": "In this web development course you will learn about HTML/CSS, MySQL, PHP, JavaScript, and React and build a website from scratch!",
+  "price": 1000,
+  "duration": 6,
+  "projects": [
+    {
+      "tittle": "an e-commerce site",
+      "description": "an web appskdkdlkdlkdf"
+    }
+  ],
+  "languages": [
+    "Hindi"
+  ],
+  "type": "ML"
+},
+{
+  "_id": {
+    "$oid": "673daec00900c48012f32420"
+  },
+  "title": "Adnaced Excel",
+  "description": "In this web development course you will learn about HTML/CSS, MySQL, PHP, JavaScript, and React and build a website from scratch!",
+  "price": 1000,
+  "duration": 6,
+  "projects": [
+    {
+      "tittle": "an e-commerce site",
+      "description": "an web appskdkdlkdlkdf"
+    }
+  ],
+  "languages": [
+    "Hindi"
+  ],
+  "type": "Excel"
+},
+{
+  "_id": {
+    "$oid": "673daec00900c48012f32421"
+  },
+  "title": "UI & UX Design",
+  "description": "In this web development course you will learn about HTML/CSS, MySQL, PHP, JavaScript, and React and build a website from scratch!",
+  "price": 1000,
+  "duration": 6,
+  "projects": [
+    {
+      "tittle": "an e-commerce site",
+      "description": "an web appskdkdlkdlkdf"
+    }
+  ],
+  "languages": [
+    "Hindi"
+  ],
+  "type": "Marketing"
+},
+{
+  "_id": {
+    "$oid": "673daec00900c48012f32422"
+  },
+  "title": "Data Science",
+  "description": "In this web development course you will learn about HTML/CSS, MySQL, PHP, JavaScript, and React and build a website from scratch!",
+  "price": 1000,
+  "duration": 6,
+  "projects": [
+    {
+      "tittle": "an e-commerce site",
+      "description": "an web appskdkdlkdlkdf"
+    }
+  ],
+  "languages": [
+    "Hindi"
+  ],
+  "type": "ML"
+}]

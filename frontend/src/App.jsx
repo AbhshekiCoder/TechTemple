@@ -24,6 +24,8 @@ import Sidebar from './Components/Sidebar'
 import url from './misc/url'
 import Singin from './Pages/Singin'
 import StudentDashboard from './Pages/StudentDashboard'
+import Quiz from './Pages/Quiz'
+
 
 
 // import Demo from './Components/demo'
@@ -119,6 +121,9 @@ else{
       <Route path='/CourseDetail' element ={<CourseDetail />}></Route>
       <Route path='/signin' element ={<Singin/>}></Route>
       <Route path='/StudentDashboard' element ={<StudentDashboard/>}></Route>
+      <Route path='/quiz' element ={<Quiz/>}></Route>
+   
+   
      </Route>
     </Routes>
     <Footer/>

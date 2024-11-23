@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../CSS/StudentDashboard.css';
 import axios from 'axios';
 import url from '../misc/url';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Loader } from 'rsuite';
 
 
@@ -12,11 +12,15 @@ export default function StudentDashboard() {
   const [login, setLogin] = useState(false);
   let data = async()=>{
     let token = localStorage.getItem('users')
-    let result = await axios.get(`${url}enroll_courses/${token}`);
-    setCourses(result.data);
-    console.log(result.data)
+   
     if(token){
       setLogin(true)
+      let result = await axios.get(`${url}enroll_courses/${token}`);
+      setCourses(result.data);
+      console.log(result.data)
+    }
+    else{
+      Navigate('/')
     }
 
 
@@ -36,7 +40,7 @@ export default function StudentDashboard() {
    
    <nav className='flex justify-between items-center sticky-top bg-gray-100 h-16 ' style={{ boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'}}>
     <div className='logo ml-3'>
-    Tech Temple
+    <Link to='/'>Tech Temple</Link>
 
     </div>
     <div>
