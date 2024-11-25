@@ -47,13 +47,13 @@ export default function Review() {
                       
                    
                   
-                     <SwiperSlide className=" review-card p-2 rounded-lg border" style={{backgroundColor:'#EDEDED', width: "270px"}}  >
+                     <SwiperSlide className=" review-card p-2 rounded-lg " style={{backgroundColor:'#EDEDED', width: "270px"}}  >
                     
                     <div className='flex ml-3 mt-4 '>
-                        <div className='max-w-1/3 flex items-center justify-end'>
-                            <img src={`data:${Element.type};base64,${Element.img}`} className = 'review-Img w-full h-10' alt="" />
+                        <div className='w-1/2 flex items-center '>
+                            <img src={`data:${Element.type};base64,${Element.img}`} className = 'review-Img  w-16 h-16 rounded-circle' alt="" />
                         </div>
-                        <div className='max-w-2/3  font-inter ' style={{color:'#7B7B7B'}}>
+                        <div className='w-1/2  font-inter  ' style={{color:'#7B7B7B'}}>
                             {/* Name */}
                             <div className= 'review-Name'>
                                 <p>{Element.name}</p>
