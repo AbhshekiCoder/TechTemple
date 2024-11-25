@@ -7,9 +7,25 @@ const mongodbConnect = require('./config/ConnectDB');
 const app = express();
 app.use(bodyParser.json());
 app.use(express.json());
+<<<<<<< HEAD
 app.use(cors())
 
 
+=======
+
+
+const corsOptions = {
+    origin: 'https://techtemple-123232.onrender.com', // Your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+};
+
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+app.use(cors({ origin: '*' }));
+
+>>>>>>> 8b947e2629bf23cd1e56f5a0d1327887b8ad465c
 const register = require('./api/users/Register');
 const login = require('./api/users/Login');
 const user_profile_update = require('./api/users/Update');
