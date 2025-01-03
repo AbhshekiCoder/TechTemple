@@ -51,7 +51,7 @@ export default function Review() {
                     
                     <div className='flex ml-3 mt-4 '>
                         <div className='w-1/2 flex items-center '>
-                            <img src={`data:${Element.type};base64,${Element.img}`} className = 'review-Img  w-16 h-16 rounded-circle' alt="" />
+                            <img src={`data:${Element.type};base64,${Element.img}`} className = 'review-Img  w-16 h-16 rounded-circle ' alt="" />
                         </div>
                         <div className='w-1/2  font-inter  ' style={{color:'#7B7B7B'}}>
                             {/* Name */}

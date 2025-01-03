@@ -13,11 +13,12 @@ import { FacebookAuthProvider } from 'firebase/auth';
 import { PhoneAuthProvider } from 'firebase/auth'
 import {Link, useNavigate} from "react-router-dom"
 import url from '../misc/url';
-
+import {Loader} from 'rsuite';
 export default function Signup() {
 	let [type, setType] = useState("success");
 	let navigate = useNavigate();
 	let register = async(e)=>{
+		document.getElementById("loading").style.display = "flex";
 		e.preventDefault();
 		let form = document.forms['Signupform'];
 		console.log(form.name.value)
@@ -31,13 +32,17 @@ export default function Signup() {
 			password: password
 		}
 		
-		let result = await axios.post(`${url}register`, obj);
+		let result = await axios.post("http://localhost:3000/register/register", obj);
+		console.log(result.data)
 		if(result.data.success){
 			setType("success");
+		
 			document.querySelector('.message').style.display = 'block';
 			document.getElementById("message").innerText = result.data.message;
+			document.getElementById("loading").style.display = "none";
 			setTimeout(()=>{
 				document.querySelector('.message').style.display = 'none';
+				document.getElementById("loading").style.display = "none";
 
 			},2000)
 			setTimeout(()=>{
@@ -49,10 +54,13 @@ export default function Signup() {
 		}
 		else{
 			setType("warning");
+		
 			document.querySelector('.message').style.display = 'block';
 			document.getElementById("message").innerText = result.data.message;
+			
 			setTimeout(()=>{
 				document.querySelector('.message').style.display = 'none';
+				document.getElementById("loading").style.display = "none";
 
 			},2000)
 
@@ -135,6 +143,10 @@ let result = await axios.post(`${url}register_apps`, obj);
 	
   return (
 	<>
+	<div className='loading absolute text-2xl w-full h-full z-10 opacity-50 flex justify-center items-center hidden' id = "loading">
+
+<Loader className='fixed ' size='md'/>
+</div>
 
    <div className='flex justify-center w-full h-fit   fixed'>
    <Message type={type} bordered showIcon    placement = "topCenter" className='mt-6 hidden message' >
@@ -198,7 +210,7 @@ let result = await axios.post(`${url}register_apps`, obj);
 
 					<div className='flex w-fit m-auto pt-3'>
 						<p className='mr-2 font-semibold text-lg'>Already Have An Account?</p>
-						<Link to = "/Signin" className='text-purple-700 text-lg'><u>Log In</u></Link>
+						<Link to = "/signin" className='text-purple-700 text-lg'><u>Log In</u></Link>
 					</div>
 				</div>
 

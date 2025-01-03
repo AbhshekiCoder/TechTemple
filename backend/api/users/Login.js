@@ -33,7 +33,7 @@ router.post('/login', async(req, res) =>{
                 if(result1){
                
                     const token = jwt.sign({ email: email }, '123456', { expiresIn: '1h' });
-                    res.send({success: true, message: "login successfully", token: token});
+                    res.status(201).send({success: true, message: "login successfully", token: token});
                 }
                 else{
                      res.send({success: false, message: "invalid password"})

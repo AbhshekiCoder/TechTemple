@@ -21,6 +21,7 @@ import {Loader} from 'rsuite'
 
 
 export default function Login() {
+
 	let [type, setType] = useState("success");
     let navigate = useNavigate();
 
@@ -29,6 +30,7 @@ export default function Login() {
 
 	},[])
 	let signin = async(e)=>{
+		document.getElementById('loading').style.display = "flex";
 		e.preventDefault();
 		let form = document.forms['Signinform'];
 		let email = form.email.value;
@@ -46,6 +48,7 @@ export default function Login() {
 			
 			setTimeout(()=>{
 				document.querySelector('.message').style.display = 'none';
+				document.getElementById('loading').style.display = "none";
 
 			},2000)
 
@@ -61,19 +64,21 @@ export default function Login() {
 				document.getElementById("message").innerText = result1.data.message;
 				setTimeout(()=>{
 					document.querySelector('.message').style.display = 'none';
+					document.getElementById('loading').style.display = "none";
 	
 				},2000)
 			}
 			else{
 				setType("success");
 
-			document.getElementById('loading').style.display = "block";
+			
 			document.querySelector('.message').style.display = 'block';
-			document.getElementById('loading').style.display = "none";
+			
 			document.getElementById("message").innerText = result.data.message;
 			
 			setTimeout(()=>{
 				document.querySelector('.message').style.display = 'none';
+				document.getElementById('loading').style.display = "none";
 
 			},2000)
 			  
@@ -91,6 +96,7 @@ export default function Login() {
 	}
 	
 	let  google_authentication = async()=>{
+		document.getElementById('loading').style.display = "flex";
 		
 		const provider = new GoogleAuthProvider();
 	signInWithPopup(auth, provider).then(async(res)=>{
@@ -110,6 +116,7 @@ let result = await axios.post(`${url}register_apps/register_apps`, obj);
 			document.getElementById("message").innerText = result.data.message;
 			setTimeout(()=>{
 				document.querySelector('.message').style.display = 'none';
+				document.getElementById('loading').style.display = "none";
 
 			},2000)
 
@@ -122,6 +129,7 @@ let result = await axios.post(`${url}register_apps/register_apps`, obj);
 				document.getElementById("message").innerText = result1.data.message;
 				setTimeout(()=>{
 					document.querySelector('.message').style.display = 'none';
+					document.getElementById('loading').style.display = "none";
 	
 				},2000)
 			}
@@ -132,6 +140,7 @@ let result = await axios.post(`${url}register_apps/register_apps`, obj);
 			document.getElementById("message").innerText = result.data.message;
 			setTimeout(()=>{
 				document.querySelector('.message').style.display = 'none';
+				document.getElementById('loading').style.display = "none";
 
 			},2000)
 			  

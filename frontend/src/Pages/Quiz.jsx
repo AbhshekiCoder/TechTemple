@@ -11,7 +11,7 @@ export default function Quiz() {
   let Navigate = useNavigate()
  const data = [];
   useEffect(()=>{
-    let result = axios.get(`${url}quiz`).then(result =>{
+    let result = axios.get(`${url}quiz/quiz`).then(result =>{
       console.log(result.data)
       setQuiz(result.data);
       

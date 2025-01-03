@@ -6,19 +6,20 @@ const dotenv = require('dotenv');
 dotenv.config()
 const url = process.env.URL
 const { MongoClient} = require('mongodb');
-const user = require('../../model/usermodal/Register');
+const users = require('../../model/usermodal/Register');
 const bcrypt = require('bcrypt');
 
 app.use(bodyParser.json());
 app.use(express.json());
 const router = express.Router();
 
+
 router.post('/register', async(req, res) =>{
     const{name, email, password} = req.body;
     let password1 = 0;
     try{
         let password1 = await bcrypt.hash(password, 10);
-        let obj = new user({
+        let obj = new users({
             name: name,
             email: email,
             password: password1
@@ -26,12 +27,22 @@ router.post('/register', async(req, res) =>{
         let client = new MongoClient(url);
         let db = client.db("Tech_Temple");
         let collection = db.collection("users");
-        collection.find({email: email}).toArray().then(result =>{
+        
+         collection.find({email: email}).toArray().then(result =>{
             if(result.length > 0){
                
-                res.send({success: false, message: "email already registered"});
+                res.status(200).send({success: false, message: "email already registered"});
+               
             }
             else{
+               collection.insertOne(obj).then(()=>{
+                res.status(201).send({success: true, message: "successfully registered"});
+
+               }).catch(err =>{
+                res.status(500).send({success: false, message: "error during registration"})
+               })
+               
+               
                
 
             }
@@ -39,7 +50,7 @@ router.post('/register', async(req, res) =>{
       
     }
     catch(err){
-        console.log(err.message);
+        res.status(500).send({success: false, message: "Error during registration"})
     }
 
 

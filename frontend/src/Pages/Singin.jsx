@@ -19,7 +19,7 @@ export default function () {
             password: password,
             role: role
         }
-        let result = await axios.post(`${url}signin`, obj );
+        let result = await axios.post(`${url}signin/signin`, obj );
         if(result.data.success){
              setType("success")
             console.log(result.data.role)

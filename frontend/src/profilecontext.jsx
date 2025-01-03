@@ -40,7 +40,7 @@ export const ProfileProvider = ({children})=>{
  
 
 
-   },[]);
+   },[users]);
    useEffect(()=>{
     let token= localStorage.getItem('token');
     if(token){
