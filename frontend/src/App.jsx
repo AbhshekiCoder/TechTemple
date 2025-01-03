@@ -25,6 +25,7 @@ import url from './misc/url'
 import Singin from './Pages/Singin'
 import StudentDashboard from './Pages/StudentDashboard'
 import Quiz from './Pages/Quiz'
+import Courses from './Pages/Courses'
 
 
 
@@ -122,6 +123,7 @@ else{
       <Route path='/signin' element ={<Singin/>}></Route>
       <Route path='/StudentDashboard' element ={<StudentDashboard/>}></Route>
       <Route path='/quiz' element ={<Quiz/>}></Route>
+      <Route path='/Courses' element ={<Courses/>}></Route> 
    
    
      </Route>

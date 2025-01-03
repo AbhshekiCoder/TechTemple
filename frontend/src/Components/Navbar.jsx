@@ -206,7 +206,7 @@ export default function Navbar({sidebar_open}) {
               <div className='w-24 text-lg flex items-center font-inter relative cursor-pointer' style={{fontWeight:'500'}} >
 
               	<div className={`${ishovered?'text-purple-900':'text-white'}`}> {/*headline*/}
-                	    <p className=' mr-2' >Courses</p>
+                	<Link to ="/Courses"><p className=' mr-2' >Courses</p></Link>
                   </div>
 
                   <div> {/*arrow icon*/}
