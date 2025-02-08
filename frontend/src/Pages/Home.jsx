@@ -62,17 +62,7 @@ function Home({sidebar_open, profile, logout}){
           {/* Main Container */}
         
          <Course_details/>
-         <div>
-          <form className="" name = "form">
-          <input type = "text" name = "name" className="border"/>
-          <input type = "text" name = "description" className="border"/>
-          <input type = "text" name = "technology" className="border"/>
-          <input type = "file" name = "image" onChange={Image} className="border"/>
-          <input type = "text" name = "rating" className="border"/>
-
-          </form>
-          <button onClick={form}>click</button>
-         </div>
+        
          
         </>
     )

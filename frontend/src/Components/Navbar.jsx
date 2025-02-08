@@ -155,7 +155,7 @@ export default function Navbar({sidebar_open}) {
 	}
   return (
    <>
-      <div className='navbar sticky-top z-10 flex items-center justify-between font-sans text-white' style={{backgroundColor:'#6B21A8',boxShadow:'rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px'}}>
+      <div className='navbar sticky-top z-10 flex items-center justify-between font-sans text-black' style={{backgroundColor:'white',boxShadow:'rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px'}}>
 
         {/* Frame-1 */}
         <div className='flex justify-between h-full items-center ml-8'>
@@ -206,7 +206,7 @@ export default function Navbar({sidebar_open}) {
               <div className='w-24 text-lg flex items-center font-inter relative cursor-pointer' style={{fontWeight:'500'}} >
 
               	<div className={`${ishovered?'text-purple-900':'text-white'}`}> {/*headline*/}
-                	<Link to ="/Courses"><p className=' mr-2' >Courses</p></Link>
+                	<Link to ="/Courses"><p className=' mr-2 text-black' >Courses</p></Link>
                   </div>
 
                   <div> {/*arrow icon*/}

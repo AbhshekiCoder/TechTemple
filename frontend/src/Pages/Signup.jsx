@@ -212,7 +212,7 @@ let result = await axios.post(`${url}register_apps`, obj);
 
 					<div className='flex w-fit m-auto pt-3'>
 						<p className='mr-2 font-semibold text-lg'>Already Have An Account?</p>
-						<Link to = "/signin" className='text-purple-700 text-lg'><u>Log In</u></Link>
+						<Link to = "/login" className='text-purple-700 text-lg'><u>Log In</u></Link>
 					</div>
 				</div>
 

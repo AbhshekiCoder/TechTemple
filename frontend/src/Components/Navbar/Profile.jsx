@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { ProfileContext } from "../../profilecontext";
+import { Link } from "react-router-dom";
 function Profile(){
     const [username, setUserName] = useState(useContext(ProfileContext));
 	useEffect(()=>{
@@ -51,6 +52,11 @@ function Profile(){
 						<div className='group flex items-center pl-4  hover:bg-gray-300' style={{height:'45px'}}>
 		    	    	    <div>
 		    	    		  	<a className='hover:no-underline group-hover:text-purple-600' href="">More</a>
+		    	    	  	</div>
+		    	    	</div>
+						<div className='group flex items-center pl-4  hover:bg-gray-300' style={{height:'45px'}}>
+		    	    	    <div>
+		    	    		  	<Link to = "/signin" className='hover:no-underline group-hover:text-purple-600' href="">Admin</Link>
 		    	    	  	</div>
 		    	    	</div>
 
