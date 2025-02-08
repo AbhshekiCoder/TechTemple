@@ -11,14 +11,17 @@ const courses_scehema = new mongoose.Schema({
         type: Number
     },
     duration:{
-        type: Number
+        type: String
     },
     projects:{
-        type: Array
+        type: Number
     },
     languages:{
-        type: Array
+        type: String
     },
+    type:{
+        type: String
+    }
    
 })
 

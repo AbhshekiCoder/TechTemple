@@ -14,7 +14,7 @@ import {GoogleAuthProvider} from 'firebase/auth';
 import { FacebookAuthProvider } from 'firebase/auth';
 import { GithubAuthProvider } from 'firebase/auth'
 import { Link, useNavigate } from 'react-router-dom'
-import url from '../misc/url';
+let url = import.meta.env.VITE_URL
 import {Loader} from 'rsuite'
 
 

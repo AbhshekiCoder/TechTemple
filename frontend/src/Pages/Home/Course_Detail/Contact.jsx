@@ -1,7 +1,7 @@
 import React from 'react'
 import ContactUsImg from '../../../assets/ContactUsImg.png'
 import axios from 'axios';
-import url from '../../../misc/url';
+let url = import.meta.env.VITE_URL
 
 
 let submit = async(e)=>{

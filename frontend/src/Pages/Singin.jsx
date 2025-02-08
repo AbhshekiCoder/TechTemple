@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
-import url from '../misc/url';
+let url = import.meta.env.VITE_URL
 import { Loader, Message } from 'rsuite';
 
 export default function () {
@@ -33,6 +33,13 @@ export default function () {
              if(result.data.role == 'students'){
               Navigate('/StudentDashboard');
                }
+               if(result.data.role == "teacher"){
+                Navigate('/teachers')
+               }
+               if(result.data.role == "admin"){
+                Navigate('/admin')
+               }
+ 
  
             },2000)
            
@@ -94,11 +101,11 @@ export default function () {
         Students
 
         </option>
-        <option value="Teachers">
+        <option value="teacher">
         Teachers
 
         </option>
-        <option value="Admin">
+        <option value="admin">
           Admin
         </option>
       </select>

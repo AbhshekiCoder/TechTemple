@@ -156,4 +156,97 @@
     min-height: calc(100vh - 290px);
 }
 
+.main-container{
+  
+    width: 100%;
+    height: 100%;
+    
+   
+  
+    background-color: rgba(241, 241, 241, 1)
+   
+}
+.signup>div{
+    max-width: 512px;
+    margin: auto;
+   
+   
+   
+}
+.signup>h2{
+    color: rgba(79, 79, 79, 1);
+    font-weight: 600;
+    font-family: Kumbh Sans;
+    font-size: 36px;
+    margin: auto;
+    max-width: 656px;
+    margin-top: 50px;
+ 
+    text-align: center;
+    
+}
+.signup-form{
+    background-color: white;
+    height: 494px;
+    max-width: 512px;
+   
+    margin-top: 50px;
+   
 
+}
+.signup>div>.signup-form>form{
+    max-width: 300px;
+    margin: auto;
+    margin-top: 60px;
+   
+}
+.signup>div>.signup-form>form>p{
+    display: flex;
+    justify-content: center;
+    color:rgba(102, 112, 133, 1);
+    max-width: 230px;
+    font-weight: 500;
+    font-family: inter;
+    font-size: 16px;
+   
+    margin: auto;
+   padding-top: 72px;
+    
+    text-align: center;
+    
+}
+.signup>div>.signup-form>form>.form-item{
+    max-width: 100%;
+    margin-top: 30px;
+   
+    
+}
+.signup>div>.signup-form>form>.form-item>input{
+    height: 40px;
+    width: 100%;
+    border-radius: 4px;
+}
+.signup>div>.signup-form>form>div>button{
+    height: 40px;
+    width: 100%;
+    background-color:rgba(45, 136, 212, 1);
+    color: white;
+    border: none;
+
+}
+.signup-form>form>.item{
+    width: 100%;
+    margin-top: 20px;
+}
+.signup-form>form>.item>input{
+    width: 100%;
+    height: 40px;
+}
+label{
+    color: rgba(102, 112, 133, 1);
+    font-family: inter;
+}
+.item>div>select{
+    width: 100%;
+    height: 40px;
+}

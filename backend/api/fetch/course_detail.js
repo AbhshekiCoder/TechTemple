@@ -5,30 +5,32 @@ const dotenv = require('dotenv');
 
 dotenv.config()
 const url = process.env.URL
-const { MongoClient} = require('mongodb');
+const { MongoClient, ObjectId} = require('mongodb');
 const jwt = require('jsonwebtoken');
 
 
 
 app.use(bodyParser.json());
 app.use(express.json());
-const enroll_courses  = express.Router();
+const course_detail = express.Router();
 
 
 
 
-enroll_courses.post('/enroll_courses/:id', (req, res) =>{
+course_detail.get('/course_detail/:id', (req, res) =>{
     let {id} = req.params;
+    let objectid = new ObjectId(id)
+    console.log(id)
     
-    let email =  jwt.decode(id)
-  console.log(email)
+
    
     const client = new MongoClient(url);
     const db = client.db("Tech_Temple");
-    const collection = db.collection("enroll_courses");
+    const collection = db.collection("courses");
     try{
-        collection.find({email: email.email}).toArray().then(result =>{
+        collection.findOne({_id: objectid}).then(result =>{
             res.send(result);
+            console.log(result)
         })
     }
     catch(err){
@@ -36,4 +38,4 @@ enroll_courses.post('/enroll_courses/:id', (req, res) =>{
     }
 });
 
-module.exports = enroll_courses ;
+module.exports = course_detail;

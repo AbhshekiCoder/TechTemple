@@ -20,7 +20,47 @@ router.post('/signin', async(req, res) =>{
     const db = client.db("Tech_Temple");
     const collection = db.collection(role);
     try{
-      
+      if(role == "admin" || "teacher"){
+        
+        let result =  await collection.findOne({email: email});
+          
+         if(!result){
+             res.send({success:false, message: "invalid email"})
+             return;
+
+          }
+          else{
+          
+          
+           try{
+            let password1 = await bcrypt.compare(password, result.password);
+            if(password1){
+              const token = jwt.sign({ email: email }, '123456', { expiresIn: '1h' });
+              res.send({success: true, message: "login successfully", token: token, role: role});
+          
+          
+
+
+            }
+            else{
+              res.send({success:false, message: "invalid password"})
+
+            }
+               
+            
+           
+              
+              
+
+           }catch(err){
+             console.log(err.message);
+
+           }
+         }
+         
+
+      }
+      else{
         let result =  await collection.find({$and:[{email: email}, {password: password}]}).toArray();
            console.log(result)
             if(result.length< 1){
@@ -46,6 +86,9 @@ router.post('/signin', async(req, res) =>{
 
               }
             }
+
+      }
+        
             
             
 

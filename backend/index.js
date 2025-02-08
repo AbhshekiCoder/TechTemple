@@ -23,8 +23,14 @@ const review = require('./api/fetch/review');
 const customer_contact = require('./api/users/customer_contact');
 const signin = require('./api/users/signin')
 const dotenv = require('dotenv');
-const enroll_courses = require('./api/fetch/coursesenroll')
+const enroll_courses = require('./api/fetch/coursesenroll.js')
 const quiz = require('./api/fetch/quiz')
+const adminsignup = require('./api/admin/adminsignup.js')
+const module_submit = require('./api/teachers/muodule_submit.js');
+const course_detail = require('./api/fetch/course_detail.js');
+const { appendFile } = require('fs');
+const payment = require('./api/users/payment.js');
+const enroll = require('./api/users/enroll.js');
 
 
 
@@ -45,6 +51,11 @@ app.use('/customer_contact', customer_contact);
 app.use('/signin', signin)
 app.use('/enroll_courses/:id', enroll_courses)
 app.use('/quiz', quiz)
+app.use('/adminsignup', adminsignup);
+app.use('/module_submit', module_submit )
+app.use('/course_detail/:id', course_detail)
+app.use('/payment', payment)
+app.use('/enroll', enroll)
 app.post('/course_detail', (req, res)=>{
     const client = new MongoClient(url);
     const db = client.db("Tech_Temple");

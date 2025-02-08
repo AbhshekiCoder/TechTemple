@@ -5,7 +5,7 @@ import qualification from '../../assets/qualification.png'
 import TimingImg from '../../assets/TimingImg.png'
 import EligibilityImg from '../../assets/EligibilityImg.png'
 
-export default function CoursesCriteria() {
+export default function CoursesCriteria({data}) {
   	return (
     		<div className='pl-8 pr-8 max-sm:pl-4 max-sm:pr-4'>
 				{/* Criteria */}

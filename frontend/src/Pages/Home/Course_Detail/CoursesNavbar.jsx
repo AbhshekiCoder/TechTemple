@@ -11,11 +11,13 @@ import 'swiper/css/pagination';
 import CourseImage from '../../../assets/CourseImage.png'
 import HidebarImg from '../../../assets/Hidebar.png'
 import axios from 'axios';
-import url from '../../../misc/url';
+let url = import.meta.env.VITE_URL
 import '../../../CSS/coursenavbar.css'
 import {Loader} from 'rsuite';
+import { useNavigate } from 'react-router-dom';
 
 export default function CoursesNavbar() {
+    let Navigate = useNavigate()
     const [show, setShow] = useState(false);
     const [courses, setCourses] = useState();
     const [courses1, setCourses1] = useState();
@@ -138,7 +140,11 @@ export default function CoursesNavbar() {
 
     },120000)
    
-   
+   let course = (e)=>{
+    localStorage.setItem("id", e);
+    Navigate('/courses')
+
+   }
   
    
   return (
@@ -210,7 +216,7 @@ export default function CoursesNavbar() {
                         <button className='w-20   rounded-full text-center text-black font-semibold bg-purple-300 mr-3 max-sm:w-16 text-base max-sm:text-xs' style={{height:'36px',fontWeight:'600'}}>Preview</button>
                     </div>
                     <div>
-                        <button className='w-24 rounded-full text-center text-white bg-purple-700 mr-4 max-sm:w-16 text-base  max-sm:text-xs'style={{height:'36px',fontWeight:'600'}}>Buy Now</button>
+                        <button className='w-24 rounded-full text-center text-white bg-purple-700 mr-4 max-sm:w-16 text-base  max-sm:text-xs'style={{height:'36px',fontWeight:'600'}} onClick={() =>course(Element._id)}>Buy Now</button>
                     </div>
                 </div>
             </div>

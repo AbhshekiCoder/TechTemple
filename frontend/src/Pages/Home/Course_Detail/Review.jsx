@@ -3,8 +3,8 @@ import ReviewProfile from '../../../assets/ReviewProfile.png'
 import ReviewProfile1 from '../../../assets/ReviewProfile1.png'
 import ReviewProfile2 from '../../../assets/ReviewProfile2.png'
 import ReviewProfile3 from '../../../assets/ReviewProfile3.png'
-import axios from 'axios'
-import url from '../../../misc/url'
+import axios from 'axios';
+let url = import.meta.env.VITE_URL
 import { Swiper, SwiperSlide } from 'swiper/react'; 
 import 'swiper/swiper-bundle.css'; 
 import SwiperCore from 'swiper';

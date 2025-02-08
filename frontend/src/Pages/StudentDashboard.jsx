@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../CSS/StudentDashboard.css';
 import axios from 'axios';
-import url from '../misc/url';
+let url = import.meta.env.VITE_URL
 import { Link, useNavigate } from 'react-router-dom';
 import { Loader } from 'rsuite';
 
@@ -15,8 +15,8 @@ export default function StudentDashboard() {
    
     if(token){
       setLogin(true)
-      let result = await axios.get(`${url}enroll_courses/${token}`);
-      setCourses(result.data);
+      let result = await axios.post(`${url}enroll_courses/${token}/enroll_courses/${token}`);
+      setCourses(result.data)
       console.log(result.data)
     }
     else{

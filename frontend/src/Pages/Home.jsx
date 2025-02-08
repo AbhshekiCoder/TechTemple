@@ -13,7 +13,7 @@ import { Navigation, Pagination, Scrollbar, Thumbs} from 'swiper/modules';
 import axios from "axios";
 import Course_details from '../Pages/Home/Course_detail';
 import '../CSS/Home.css';
-import url from "../misc/url";
+let url = import.meta.env.VITE_URL
 function Home({sidebar_open, profile, logout}){ 
   let [file, setFile] = useState();
   

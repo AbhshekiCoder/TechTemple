@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import url from '../misc/url';
+
 import axios from 'axios';
 import voice from '../assets/clock.mp3';
 import { Link, useNavigate } from 'react-router-dom';
 import { Loader, Message } from 'rsuite';
+let url = import.meta.env.VITE_URL
 export default function Quiz() {
   let [quiz, setQuiz] = useState();
   let [question, setQuestion] = useState();

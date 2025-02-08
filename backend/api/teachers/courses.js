@@ -14,17 +14,19 @@ app.use(express.json());
 const router = express.Router();
 
 router.post('/courses', async(req, res) =>{
-    const{title, description, price, duration, projects, languages} = req.body;
+    const{name, detail, price, duration, projects, languages, type} = req.body;
+    console.log(duration)
     
     try{
        
         let obj = new courses({
-            title: title,
-            description: description,
+            title: name,
+            description: detail,
             price: price,
             duration: duration,
             projects: projects,
             languages: languages,
+            type: type
            
 
         });

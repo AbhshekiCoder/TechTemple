@@ -21,17 +21,24 @@ import Dashboard from './Pages/Dashboard';
 import { ProfileProvider } from './profilecontext'
 import CourseDetail from './Pages/CourseDetail'
 import Sidebar from './Components/Sidebar'
-import url from './misc/url'
+
 import Singin from './Pages/Singin'
 import StudentDashboard from './Pages/StudentDashboard'
 import Quiz from './Pages/Quiz'
 import Courses from './Pages/Courses'
+import Register from './Pages/Register'
+import dotenv from 'dotenv'
+import TeacherDashboard from './Pages/TeacherDashboard'
+import Admin from './Pages/Admin'
 
-
+let url = import.meta.env.VITE_URL
 
 // import Demo from './Components/demo'
 
 function App() {
+ 
+
+  
   let [username, setUserName] = useState();
   let [profile, setProfile] = useState(false);
   let [num, setNum] = useState(1);
@@ -108,12 +115,16 @@ else{
 
   return (
     <>
+    
+
+ 
     <Sidebar username={username} profile={profile} logout={logout} />
   <ProfileProvider>
   <Routes>
     <Route element = {<PrivateRoute/>}>
     <Route path = "/Dashboard" element={<Dashboard/>}></Route>
-
+    <Route path='/teacher' element={<TeacherDashboard/>}></Route>
+    <Route path='/admin' element={<Admin/>}></Route>
     </Route>
      <Route element = {<PublicRoute/>}>
      <Route path = "/login" element={<Login/>}></Route>
@@ -123,7 +134,9 @@ else{
       <Route path='/signin' element ={<Singin/>}></Route>
       <Route path='/StudentDashboard' element ={<StudentDashboard/>}></Route>
       <Route path='/quiz' element ={<Quiz/>}></Route>
-      <Route path='/Courses' element ={<Courses/>}></Route> 
+      <Route path='/courses' element ={<Courses sidebar_open={sidebar_open} profile={profile} logout={logout}/>}></Route> 
+      <Route path= '/Admin' element={<Register/>}></Route>
+      <Route path = '/teachers' element = {<TeacherDashboard/>}></Route>
    
    
      </Route>
@@ -133,6 +146,7 @@ else{
  
 
   </ProfileProvider>
+  
    
       
 

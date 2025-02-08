@@ -12,9 +12,11 @@ import {GoogleAuthProvider} from 'firebase/auth';
 import { FacebookAuthProvider } from 'firebase/auth';
 import { PhoneAuthProvider } from 'firebase/auth'
 import {Link, useNavigate} from "react-router-dom"
-import url from '../misc/url';
+
 import {Loader} from 'rsuite';
+let url = import.meta.env.VITE_URL
 export default function Signup() {
+	 
 	let [type, setType] = useState("success");
 	let navigate = useNavigate();
 	let register = async(e)=>{
