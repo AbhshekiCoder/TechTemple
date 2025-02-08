@@ -84,7 +84,13 @@ app.use('/token', (req, res)=>{
 app.use('/', (req, res)=>{
     res.send('<h1>hello</h1>')
 })
-
+app.use(express.static('public', {
+  setHeaders: (res, path) => {
+      if (path.endsWith('.js')) {
+          res.setHeader('Content-Type', 'application/javascript');
+      }
+  }
+}));
 
 app.listen(3000)
 
