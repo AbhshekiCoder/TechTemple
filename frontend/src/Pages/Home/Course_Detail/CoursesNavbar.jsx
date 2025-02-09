@@ -208,7 +208,7 @@ export default function CoursesNavbar() {
                     <p className='text-lg font-bold  '>{Element.title}</p>
                 </div>
                 <div className='ml-6 mt-2 mr-3 mb-1 'style={{color:'#49454F'}}>
-                    <p className=' max-sm:text-xs'>{Element.description.length > 129?Element.description.substr(0, 129) + '...':Element.description}
+                    <p className=' max-sm:text-xs'>{Element.description.length > 126?Element.description.substr(0, 126) + '...':Element.description}
                     </p>
                 </div>
                 <div className='flex justify-end ml-6 mt-6 max-lg:mt-10 max-md:mt-5 max-sm:mt-6  max-sm:p-3 '>
