@@ -13,6 +13,9 @@ import { Navigation, Pagination, Scrollbar, Thumbs} from 'swiper/modules';
 import axios from "axios";
 import Course_details from '../Pages/Home/Course_detail';
 import '../CSS/Home.css';
+import DigitalMarketing from '../assets/DigitalMarketing.jpg'
+import EthicalHacking from '../assets/EthicalHacking.jpg'
+
 let url = import.meta.env.VITE_URL
 function Home({sidebar_open, profile, logout}){ 
   let [file, setFile] = useState();
@@ -55,9 +58,9 @@ function Home({sidebar_open, profile, logout}){
          
          <Navbar sidebar_open={sidebar_open } profile={profile} logout={logout}/>
          <Swiper modules={[ Autoplay, Thumbs]}  spaceBetween={30} centeredSlides={true} autoplay={{ delay: 3000,  disableOnInteraction: false,  }} pagination={{ clickable: true }}   className="w-full mb-3 h-fit  z-0"> 
-         <SwiperSlide className="carousel-item " style={{height: "500px"}}><img src = "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600"  className="w-full h-full object-cover "/></SwiperSlide> 
-         <SwiperSlide  className="carousel-item h-96" style={{height: "500px"}}><img src = "https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&w=600"  className="w-full h-full object-cover "/></SwiperSlide> 
-         <SwiperSlide  className="carousel-item h-96" style={{height: "500px"}}><img src = "https://cdn.pixabay.com/photo/2019/10/09/07/28/development-4536630_640.png"  className="w-full h-full object-cover "/></SwiperSlide> 
+         <SwiperSlide className="carousel-item " style={{height: "500px"}}><img src = {DigitalMarketing}  className="w-full h-full object-cover "/></SwiperSlide> 
+         <SwiperSlide  className="carousel-item h-96" style={{height: "500px"}}><img src = "https://thumbs.dreamstime.com/z/html-programming-language-web-development-coding-concept-html-programming-language-web-development-coding-concept-101618001.jpg"  className="w-full h-full object-cover "/></SwiperSlide> 
+         <SwiperSlide  className="carousel-item h-96" style={{height: "500px"}}><img src = {EthicalHacking}  className="w-full h-full object-cover "/></SwiperSlide> 
          </Swiper>
           {/* Main Container */}
         

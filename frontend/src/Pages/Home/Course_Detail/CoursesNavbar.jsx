@@ -151,12 +151,12 @@ export default function CoursesNavbar() {
     
     <div>
     
-      <div className='w-full mt-12 '>
-            <div className={`w-11/12 h-10 flex items-center  ${show?'justify-between':'justify-evenly'} pl-3 m-auto rounded-full`} style={{boxShadow:' rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px'}}>
+      <div className='w-full mt-12  '>
+            <div className={`w-11/12 h-10 flex items-center  ${show?'justify-between ':'justify-evenly'} pl-3 m-auto rounded-full`} style={{boxShadow:' rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px'}}>
                 {/* Nav Feilds */}
                 {(!show && <div className='Nav-Fields flex  w-full justify-evenly   text-gray-600 font-bold flex-nowrap whitespace-nowrap max-sm:justify-between ' style={{fontSize:'16px'}}>
                    {courses?courses.map(Element =>(
-                    <div className='course_type rounded-full hover:bg-purple-400 hover:text-black ' onClick={() =>course_filter1(Element)} id={Element} >
+                    <div className='course_type rounded-full hover:cursor-pointer hover:bg-purple-400 hover:text-gray-black' onClick={() =>course_filter1(Element)} id={Element} >
                         <a className='hover:no-underline h-fit hover:text-black'>{Element}</a>
                     </div>
 
@@ -168,14 +168,14 @@ export default function CoursesNavbar() {
                    
                 </div>)}
 
-                <div className='flex items-center h-full border-blue-700 ' >
+                <div className=' flex items-center h-full border-blue-700 ' >
                     {/* Hide/Show Search Bar */}
                 {(  show && <div className='ml-1 '>
                     <img src={HidebarImg} className='h-6 w-6' onClick={Hidebar} alt="" />
                 </div>     
                 )}
                 {(  show && <div className='ml-10 '>
-                    <div className='input'>
+                    <div className='input text-base'>
                         <input type="text"  className='pl-2 w-full placeholder-gray-500  rounded-md outline-none  ' placeholder='Search' style={{maxwidth:'900px',height:'33px'}} onInput={search} onKeyDown={enter}/>
                     </div>
                 </div>
